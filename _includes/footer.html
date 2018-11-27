@@ -7,14 +7,22 @@
                 {% include sns-links.html center=true %}
 
                 <p class="copyright text-muted">
+		 本站总访问量:<span id="busuanzi_value_site_pv"></span>，本站访客数:<span id="busuanzi_value_site_uv"></span>，本文总阅读量:<span id="busuanzi_value_page_pv"></span>
+                    <br>
                     Copyright &copy; {{ site.title }} {{ site.time | date: '%Y' }}
                     <br>
-                    Powered by <a href="http://jvxiao.github.io">Shaw Blog</a>
+                    Powered by <a href="http://jvxiao.github.io">Shaw Blog</a>|
+			<iframe
+                        style="margin-left: 2px; margin-bottom:-5px;"
+                        frameborder="0" scrolling="0" width="100px" height="20px"
+                        src="https://ghbtns.com/github-btn.html?user=jvshaw&repo=jvshaw.github.io&type=star&count=true" >
+                    </iframe>
                 </p>
             </div>
         </div>
     </div>
 </footer>
+script async src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
 
 <!-- jQuery -->
 <script src="{{ "/js/jquery.min.js " | prepend: site.baseurl }}"></script>
