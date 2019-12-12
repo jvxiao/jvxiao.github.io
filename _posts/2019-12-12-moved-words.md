@@ -1,5 +1,5 @@
 layout:	post
-title:	"碎语，泪流（1）"
+title:	碎语，泪流（1）
 date:	2019-12-22 09:45:08
 author: Javier Shaw
 header-style: text
