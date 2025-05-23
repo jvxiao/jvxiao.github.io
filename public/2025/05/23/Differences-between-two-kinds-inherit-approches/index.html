@@ -1,0 +1,756 @@
+
+
+<!DOCTYPE html>
+<html lang="en" data-default-color-scheme=auto>
+
+
+
+<head>
+  <meta charset="UTF-8">
+
+  <link rel="apple-touch-icon" sizes="76x76" href="/img/fluid.png">
+  <link rel="icon" href="/img/fluid.png">
+  
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, shrink-to-fit=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  
+  <meta name="theme-color" content="#2f4154">
+  <meta name="author" content="jvxiao">
+  <meta name="keywords" content="博客,柯北,Vue,Node,Javascript,Node,React,Webpack Rollup,Vite">
+  
+    <meta name="description" content="Dog.prototype &#x3D; new Animal() 和 Dog.prototype.proto &#x3D; Animal.prototype的两种继承方式的区别1. Dog.prototype &#x3D; new Animal()语法和机制 ​目的：通过创建 Animal 的实例来继承其原型链。 ​底层逻辑：将 Dog.prototype 替换为一个新的 Animal 实例。">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Javascript中两种不同的继承方式对比">
+<meta property="og:url" content="http://jvxiao.github.io/2025/05/23/Differences-between-two-kinds-inherit-approches/index.html">
+<meta property="og:site_name" content="柯北的小屋">
+<meta property="og:description" content="Dog.prototype &#x3D; new Animal() 和 Dog.prototype.proto &#x3D; Animal.prototype的两种继承方式的区别1. Dog.prototype &#x3D; new Animal()语法和机制 ​目的：通过创建 Animal 的实例来继承其原型链。 ​底层逻辑：将 Dog.prototype 替换为一个新的 Animal 实例。">
+<meta property="og:locale" content="en_US">
+<meta property="article:published_time" content="2025-05-23T11:39:55.334Z">
+<meta property="article:modified_time" content="2025-05-23T11:39:55.334Z">
+<meta property="article:author" content="jvxiao">
+<meta property="article:tag" content="博客">
+<meta property="article:tag" content="柯北">
+<meta property="article:tag" content="Vue">
+<meta property="article:tag" content="Node">
+<meta property="article:tag" content="Javascript">
+<meta property="article:tag" content="Node">
+<meta property="article:tag" content="React">
+<meta property="article:tag" content="Webpack Rollup">
+<meta property="article:tag" content="Vite">
+<meta name="twitter:card" content="summary_large_image">
+  
+  
+  
+  <title>Javascript中两种不同的继承方式对比 - 柯北的小屋</title>
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
+
+
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/github-markdown-css/4.0.0/github-markdown.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/hint.css/2.7.0/hint.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.css" />
+
+
+
+<!-- 主题依赖的图标库，不要自行修改 -->
+<!-- Do not modify the link that theme dependent icons -->
+
+<link rel="stylesheet" href="//at.alicdn.com/t/c/font_1749284_5i9bdhy70f8.css">
+
+
+
+<link rel="stylesheet" href="//at.alicdn.com/t/c/font_1736178_k526ubmyhba.css">
+
+
+<link  rel="stylesheet" href="/css/main.css" />
+
+
+  <link id="highlight-css" rel="stylesheet" href="/css/highlight.css" />
+  
+    <link id="highlight-css-dark" rel="stylesheet" href="/css/highlight-dark.css" />
+  
+
+
+
+
+  <script id="fluid-configs">
+    var Fluid = window.Fluid || {};
+    Fluid.ctx = Object.assign({}, Fluid.ctx)
+    var CONFIG = {"hostname":"jvxiao.github.io","root":"/","version":"1.9.8","typing":{"enable":true,"typeSpeed":70,"cursorChar":"_","loop":false,"scope":[]},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"left","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"code_language":{"enable":true,"default":"TEXT"},"copy_btn":true,"image_caption":{"enable":true},"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"placement":"right","headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":false,"follow_dnt":true,"baidu":null,"google":{"measurement_id":null},"tencent":{"sid":null,"cid":null},"leancloud":{"app_id":null,"app_key":null,"server_url":null,"path":"window.location.pathname","ignore_local":false},"umami":{"src":null,"website_id":null,"domains":null,"start_time":"2024-01-01T00:00:00.000Z","token":null,"api_server":null}},"search_path":"/local-search.xml","include_content_in_search":true};
+
+    if (CONFIG.web_analytics.follow_dnt) {
+      var dntVal = navigator.doNotTrack || window.doNotTrack || navigator.msDoNotTrack;
+      Fluid.ctx.dnt = dntVal && (dntVal.startsWith('1') || dntVal.startsWith('yes') || dntVal.startsWith('on'));
+    }
+  </script>
+  <script  src="/js/utils.js" ></script>
+  <script  src="/js/color-schema.js" ></script>
+  
+
+
+  
+<meta name="generator" content="Hexo 7.3.0"></head>
+
+
+<body>
+  
+
+  <header>
+    
+
+<div class="header-inner" style="height: 70vh;">
+  <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
+  <div class="container">
+    <a class="navbar-brand" href="/">
+      <strong>柯北的小屋</strong>
+    </a>
+
+    <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
+            data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <div class="animated-icon"><span></span><span></span><span></span></div>
+    </button>
+
+    <!-- Collapsible content -->
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ml-auto text-center">
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/" target="_self">
+                <i class="iconfont icon-home-fill"></i>
+                <span>Home</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/archives/" target="_self">
+                <i class="iconfont icon-archive-fill"></i>
+                <span>Archives</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/categories/" target="_self">
+                <i class="iconfont icon-category-fill"></i>
+                <span>Categories</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/tags/" target="_self">
+                <i class="iconfont icon-tags-fill"></i>
+                <span>Tags</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/about/" target="_self">
+                <i class="iconfont icon-user-fill"></i>
+                <span>About</span>
+              </a>
+            </li>
+          
+        
+        
+          <li class="nav-item" id="search-btn">
+            <a class="nav-link" target="_self" href="javascript:;" data-toggle="modal" data-target="#modalSearch" aria-label="Search">
+              <i class="iconfont icon-search"></i>
+            </a>
+          </li>
+          
+        
+        
+          <li class="nav-item" id="color-toggle-btn">
+            <a class="nav-link" target="_self" href="javascript:;" aria-label="Color Toggle">
+              <i class="iconfont icon-dark" id="color-toggle-icon"></i>
+            </a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+</nav>
+
+  
+
+<div id="banner" class="banner" parallax=true
+     style="background: url('/img/default.png') no-repeat center center; background-size: cover;">
+  <div class="full-bg-img">
+    <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
+      <div class="banner-text text-center fade-in-up">
+        <div class="h2">
+          
+            <span id="subtitle" data-typed-text="Javascript中两种不同的继承方式对比"></span>
+          
+        </div>
+
+        
+          
+  <div class="mt-3">
+    
+    
+      <span class="post-meta">
+        <i class="iconfont icon-date-fill" aria-hidden="true"></i>
+        <time datetime="2025-05-23 19:39" pubdate>
+          May 23, 2025 pm
+        </time>
+      </span>
+    
+  </div>
+
+  <div class="mt-1">
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-chart"></i>
+        
+          1.1k words
+        
+      </span>
+    
+
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-clock-fill"></i>
+        
+        
+        
+          10 mins
+        
+      </span>
+    
+
+    
+    
+  </div>
+
+
+        
+      </div>
+
+      
+    </div>
+  </div>
+</div>
+
+</div>
+
+  </header>
+
+  <main>
+    
+      
+
+<div class="container-fluid nopadding-x">
+  <div class="row nomargin-x">
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+
+    </div>
+
+    <div class="col-lg-8 nopadding-x-md">
+      <div class="container nopadding-x-md" id="board-ctn">
+        <div id="board">
+          <article class="post-content mx-auto">
+            <h1 id="seo-header">Javascript中两种不同的继承方式对比</h1>
+            
+            
+              <div class="markdown-body">
+                
+                <h1 id="Dog-prototype-new-Animal-和-Dog-prototype-proto-Animal-prototype的两种继承方式的区别"><a href="#Dog-prototype-new-Animal-和-Dog-prototype-proto-Animal-prototype的两种继承方式的区别" class="headerlink" title="Dog.prototype &#x3D; new Animal() 和 Dog.prototype.proto &#x3D; Animal.prototype的两种继承方式的区别"></a>Dog.prototype &#x3D; new Animal() 和 Dog.prototype.proto &#x3D; Animal.prototype的两种继承方式的区别</h1><h2 id="1-Dog-prototype-new-Animal"><a href="#1-Dog-prototype-new-Animal" class="headerlink" title="1. Dog.prototype &#x3D; new Animal()"></a>1. Dog.prototype &#x3D; new Animal()</h2><h3 id="语法和机制"><a href="#语法和机制" class="headerlink" title="语法和机制"></a>语法和机制</h3><ul>
+<li><strong>​目的</strong>：通过创建 Animal 的实例来继承其原型链。</li>
+<li>​<strong>底层逻辑</strong>：将 Dog.prototype 替换为一个新的 Animal 实例。</li>
+<li><strong>​原型链结构</strong>：</li>
+</ul>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs javascript"><span class="hljs-title class_">Dog</span>.<span class="hljs-property"><span class="hljs-keyword">prototype</span></span> → <span class="hljs-title class_">Animal</span> 实例 → <span class="hljs-title class_">Animal</span>.<span class="hljs-property"><span class="hljs-keyword">prototype</span></span> → <span class="hljs-title class_">Object</span>.<span class="hljs-property"><span class="hljs-keyword">prototype</span></span> → <span class="hljs-literal">null</span><br></code></pre></td></tr></table></figure>
+
+<p>因此，Dog 的实例通过原型链可以访问 Animal 实例的属性和 Animal.prototype 的方法。</p>
+<h3 id="​特点"><a href="#​特点" class="headerlink" title="​特点"></a>​特点</h3><ul>
+<li><p><strong>​调用父类构造函数</strong>： 会执行 Animal() 构造函数，初始化父类属性（如 this.name)</p>
+</li>
+<li><p><strong>继承实例属性</strong>：Dog.prototype 会包含 Animal 实例的属性（如 name），即使这些属性是实例级别的。</p>
+</li>
+<li><p><strong>覆盖原有原型</strong>：替换 Dog.prototype 后，原先定义在 Dog.prototype 上的方法会被丢失，需重新添加。<br>​- <strong>constructor 问题</strong>：Dog.prototype.constructor 会指向 Animal，需手动修正：</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs javascript"><span class="hljs-title class_">Dog</span>.<span class="hljs-property"><span class="hljs-keyword">prototype</span></span>.<span class="hljs-property">constructor</span> = <span class="hljs-title class_">Dog</span>;<br></code></pre></td></tr></table></figure>
+<p>​示例</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><code class="hljs javascript"><span class="hljs-keyword">function</span> <span class="hljs-title function_">Animal</span>(<span class="hljs-params"></span>) &#123; <span class="hljs-variable language_">this</span>.<span class="hljs-property">name</span> = <span class="hljs-string">&quot;Animal&quot;</span>; &#125;<br><span class="hljs-title class_">Animal</span>.<span class="hljs-property"><span class="hljs-keyword">prototype</span></span>.<span class="hljs-property">eat</span> = <span class="hljs-keyword">function</span>(<span class="hljs-params"></span>) &#123; <span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(<span class="hljs-string">&quot;Eat&quot;</span>); &#125;;<br><br><span class="hljs-keyword">function</span> <span class="hljs-title function_">Dog</span>(<span class="hljs-params"></span>) &#123;&#125;<br><span class="hljs-title class_">Dog</span>.<span class="hljs-property"><span class="hljs-keyword">prototype</span></span> = <span class="hljs-keyword">new</span> <span class="hljs-title class_">Animal</span>(); <span class="hljs-comment">// 继承</span><br><span class="hljs-title class_">Dog</span>.<span class="hljs-property"><span class="hljs-keyword">prototype</span></span>.<span class="hljs-property">constructor</span> = <span class="hljs-title class_">Dog</span>; <span class="hljs-comment">// 修复 constructor</span><br><br><span class="hljs-keyword">const</span> dog = <span class="hljs-keyword">new</span> <span class="hljs-title class_">Dog</span>();<br><span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(dog.<span class="hljs-property">name</span>); <span class="hljs-comment">// &quot;Animal&quot;（继承自 Animal 实例）</span><br>dog.<span class="hljs-title function_">eat</span>();           <span class="hljs-comment">// &quot;Eat&quot;（继承自 Animal.prototype）</span><br></code></pre></td></tr></table></figure></li>
+</ul>
+<h2 id="​2-Dog-prototype-proto-Animal-prototype"><a href="#​2-Dog-prototype-proto-Animal-prototype" class="headerlink" title="​2. Dog.prototype.proto &#x3D; Animal.prototype"></a>​2. Dog.prototype.proto &#x3D; Animal.prototype</h2><h3 id="​语法和机制"><a href="#​语法和机制" class="headerlink" title="​语法和机制"></a>​语法和机制</h3><ul>
+<li><p>​目的：直接让 Dog.prototype 的 proto 属性（即 __proto__）指向 Animal.prototype。</p>
+</li>
+<li><p>​底层逻辑：修改 Dog.prototype 的原型链。</p>
+</li>
+</ul>
+<p>​-  原型链结构：</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs javascript"><span class="hljs-title class_">Dog</span>.<span class="hljs-property"><span class="hljs-keyword">prototype</span></span> → <span class="hljs-title class_">Animal</span>.<span class="hljs-property"><span class="hljs-keyword">prototype</span></span> → <span class="hljs-title class_">Object</span>.<span class="hljs-property"><span class="hljs-keyword">prototype</span></span> → <span class="hljs-literal">null</span><br></code></pre></td></tr></table></figure>
+
+<p>因此，Dog 的实例直接通过原型链访问 Animal.prototype 的方法，但不会继承 Animal 实例的属性。</p>
+<h3 id="​特点-1"><a href="#​特点-1" class="headerlink" title="​特点"></a>​特点</h3><ul>
+<li><strong>​不调用父类构造函数</strong>：不会执行 Animal()，避免副作用（如初始化逻辑）。</li>
+</ul>
+<p>​- <strong>仅继承原型方法</strong>：Dog 的实例只能访问 Animal.prototype 的方法，无法获取 Animal 实例的属性（如 name）。</p>
+<ul>
+<li><p><strong>​保留原有原型</strong>：不会覆盖 Dog.prototype 上已定义的方法。</p>
+</li>
+<li><p><strong>​非标准操作</strong>：直接修改 proto（或 __proto__）是非标准的，可能影响性能，推荐用 Object.setPrototypeOf()：</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs javascript"><span class="hljs-title class_">Object</span>.<span class="hljs-title function_">setPrototypeOf</span>(<span class="hljs-title class_">Dog</span>.<span class="hljs-property"><span class="hljs-keyword">prototype</span></span>, <span class="hljs-title class_">Animal</span>.<span class="hljs-property"><span class="hljs-keyword">prototype</span></span>);<br></code></pre></td></tr></table></figure>
+<p>​示例</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><code class="hljs javascript"><span class="hljs-keyword">function</span> <span class="hljs-title function_">Animal</span>(<span class="hljs-params"></span>) &#123; <span class="hljs-variable language_">this</span>.<span class="hljs-property">name</span> = <span class="hljs-string">&quot;Animal&quot;</span>; &#125;<br><span class="hljs-title class_">Animal</span>.<span class="hljs-property"><span class="hljs-keyword">prototype</span></span>.<span class="hljs-property">eat</span> = <span class="hljs-keyword">function</span>(<span class="hljs-params"></span>) &#123; <span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(<span class="hljs-string">&quot;Eat&quot;</span>); &#125;;<br><br><span class="hljs-keyword">function</span> <span class="hljs-title function_">Dog</span>(<span class="hljs-params"></span>) &#123;&#125;<br><span class="hljs-title class_">Dog</span>.<span class="hljs-property"><span class="hljs-keyword">prototype</span></span>.<span class="hljs-property">proto</span> = <span class="hljs-title class_">Animal</span>.<span class="hljs-property"><span class="hljs-keyword">prototype</span></span>; <span class="hljs-comment">// 直接修改 proto</span><br><br><span class="hljs-keyword">const</span> dog = <span class="hljs-keyword">new</span> <span class="hljs-title class_">Dog</span>();<br><span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(dog.<span class="hljs-property">name</span>); <span class="hljs-comment">// undefined（未继承 Animal 实例属性）</span><br>dog.<span class="hljs-title function_">eat</span>();           <span class="hljs-comment">// &quot;Eat&quot;（继承自 Animal.prototype）</span><br><br></code></pre></td></tr></table></figure></li>
+</ul>
+<h3 id="​关键区别总结"><a href="#​关键区别总结" class="headerlink" title="​关键区别总结"></a>​关键区别总结</h3><h3 id="​关键区别总结-1"><a href="#​关键区别总结-1" class="headerlink" title="​关键区别总结"></a>​<strong>关键区别总结</strong></h3><table>
+<thead>
+<tr>
+<th>​<strong>特性</strong></th>
+<th><code>Dog.prototype = new Animal()</code></th>
+<th><code>Dog.prototype.__proto__ = Animal.prototype</code></th>
+</tr>
+</thead>
+<tbody><tr>
+<td>​<strong>调用父类构造函数</strong></td>
+<td>✅ 是（执行 <code>Animal()</code>，初始化父类实例属性）</td>
+<td>❌ 否（直接链接原型，不调用构造函数）</td>
+</tr>
+<tr>
+<td>​<strong>继承实例属性</strong></td>
+<td>✅ 是（继承 <code>Animal</code> 实例的属性，如 <code>this.name</code>）</td>
+<td>❌ 否（仅继承原型方法，不包含实例属性）</td>
+</tr>
+<tr>
+<td>​<strong>覆盖原型对象</strong></td>
+<td>✅ 是（完全替换 <code>Dog.prototype</code> 为新实例）</td>
+<td>❌ 否（仅修改原型的 <code>__proto__</code>，保留原有属性和方法）</td>
+</tr>
+<tr>
+<td>​<strong>constructor修正</strong></td>
+<td>✅ 需手动修复（<code>Dog.prototype.constructor = Dog</code>）</td>
+<td>✅ 通常无需修复（原型链未改变构造函数引用）</td>
+</tr>
+<tr>
+<td>​<strong>兼容性</strong></td>
+<td>⚠️ 传统写法，但可能引发副作用（如多余属性继承）</td>
+<td>⚠️ 非标准操作（直接修改 <code>__proto__</code> 可能影响性能）</td>
+</tr>
+<tr>
+<td>​<strong>推荐程度</strong></td>
+<td>❌ 不推荐（问题多，已过时）</td>
+<td>⚠️ 慎用（可用 <code>Object.setPrototypeOf()</code> 替代）</td>
+</tr>
+<tr>
+<td>​<strong>原型链结构</strong></td>
+<td><code>Dog.prototype → Animal 实例 → Animal.prototype</code></td>
+<td><code>Dog.prototype → Animal.prototype → Object.prototype</code></td>
+</tr>
+<tr>
+<td>​<strong>是否继承父类方法</strong></td>
+<td>✅ 是（通过 <code>Animal.prototype</code>）</td>
+<td>✅ 是（直接链接到 <code>Animal.prototype</code>）</td>
+</tr>
+<tr>
+<td>​<strong>是否继承父类实例方法</strong></td>
+<td>❌ 否（仅继承原型方法，实例属性不会被继承）</td>
+<td>❌ 否（同上）</td>
+</tr>
+<tr>
+<td>​<strong>典型用途</strong></td>
+<td>早期原型链继承（已不推荐）</td>
+<td>理论原型链扩展（极少使用，多用 <code>Object.create()</code>）</td>
+</tr>
+<tr>
+<td>​<strong>替代方案</strong></td>
+<td><code>Object.create(Animal.prototype)</code> + 手动初始化属性</td>
+<td><code>Object.setPrototypeOf(Dog.prototype, Animal.prototype)</code></td>
+</tr>
+<tr>
+<td>​<strong>ES6 推荐写法</strong></td>
+<td><code>class Dog extends Animal &#123;&#125;</code></td>
+<td><code>class Dog extends Animal &#123;&#125;</code></td>
+</tr>
+</tbody></table>
+<h3 id="补充说明"><a href="#补充说明" class="headerlink" title="补充说明"></a>补充说明</h3><ul>
+<li><p>​<strong>Dog.prototype &#x3D; new Animal() 的问题</strong>：</p>
+<ul>
+<li>强制调用父类构造函数，可能导致不必要的初始化逻辑（如 Animal 的 this.name）。</li>
+<li>会将父类实例的属性（如 name）提升为 Dog.prototype 的属性，导致所有子类实例共享这些属性（可能引发意外行为）。</li>
+</ul>
+</li>
+<li><p>​<strong>Dog.prototype.<strong>proto</strong> &#x3D; Animal.prototype 的问题</strong>：</p>
+<ul>
+<li>​非标准操作：虽然浏览器支持，但 <strong>proto</strong> 是内部属性，直接修改可能导致性能下降或兼容性问题。</li>
+<li>​无法继承父类构造函数：子类实例仍需通过 new Dog() 创建，不会自动调用父类构造函数。</li>
+</ul>
+</li>
+</ul>
+<h3 id="​现代替代方案："><a href="#​现代替代方案：" class="headerlink" title="​现代替代方案："></a>​现代替代方案：</h3><p>​**Object.create()**：</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs javascript"><span class="hljs-title class_">Dog</span>.<span class="hljs-property"><span class="hljs-keyword">prototype</span></span> = <span class="hljs-title class_">Object</span>.<span class="hljs-title function_">create</span>(<span class="hljs-title class_">Animal</span>.<span class="hljs-property"><span class="hljs-keyword">prototype</span></span>);<br><span class="hljs-title class_">Dog</span>.<span class="hljs-property"><span class="hljs-keyword">prototype</span></span>.<span class="hljs-property">constructor</span> = <span class="hljs-title class_">Dog</span>;<br></code></pre></td></tr></table></figure>
+<p>直接继承 Animal.prototype，不调用父类构造函数，更安全高效。</p>
+<p>​ES6 class 语法：</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs javascript"><span class="hljs-keyword">class</span> <span class="hljs-title class_">Dog</span> <span class="hljs-keyword">extends</span> <span class="hljs-title class_ inherited__">Animal</span> &#123;&#125;<br></code></pre></td></tr></table></figure>
+<p>自动处理原型链和构造函数继承，代码更简洁清晰。</p>
+
+                
+              </div>
+            
+            <hr/>
+            <div>
+              <div class="post-metas my-3">
+  
+  
+</div>
+
+
+              
+  
+
+  <div class="license-box my-3">
+    <div class="license-title">
+      <div>Javascript中两种不同的继承方式对比</div>
+      <div>http://jvxiao.github.io/2025/05/23/Differences-between-two-kinds-inherit-approches/</div>
+    </div>
+    <div class="license-meta">
+      
+        <div class="license-meta-item">
+          <div>Author</div>
+          <div>jvxiao</div>
+        </div>
+      
+      
+        <div class="license-meta-item license-meta-date">
+          <div>Posted on</div>
+          <div>May 23, 2025</div>
+        </div>
+      
+      
+      
+        <div class="license-meta-item">
+          <div>Licensed under</div>
+          <div>
+            
+              
+              
+                <a class="print-no-link" target="_blank" href="https://creativecommons.org/licenses/by/4.0/">
+                  <span class="hint--top hint--rounded" aria-label="BY - Attribution">
+                    <i class="iconfont icon-cc-by"></i>
+                  </span>
+                </a>
+              
+            
+          </div>
+        </div>
+      
+    </div>
+    <div class="license-icon iconfont"></div>
+  </div>
+
+
+
+              
+                <div class="post-prevnext my-3">
+                  <article class="post-prev col-6">
+                    
+                    
+                      <a href="/2025/05/23/Dependencies-collecting%20of%20vue3/" title="Vue依赖收集和触发，看这些关键源码">
+                        <i class="iconfont icon-arrowleft"></i>
+                        <span class="hidden-mobile">Vue依赖收集和触发，看这些关键源码</span>
+                        <span class="visible-mobile">Previous</span>
+                      </a>
+                    
+                  </article>
+                  <article class="post-next col-6">
+                    
+                    
+                      <a href="/2025/05/23/Manage-wx-could-service/" title="">
+                        <span class="hidden-mobile"></span>
+                        <span class="visible-mobile">Next</span>
+                        <i class="iconfont icon-arrowright"></i>
+                      </a>
+                    
+                  </article>
+                </div>
+              
+            </div>
+
+            
+          </article>
+        </div>
+      </div>
+    </div>
+
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+  <aside class="sidebar" style="margin-left: -1rem">
+    <div id="toc">
+  <p class="toc-header">
+    <i class="iconfont icon-list"></i>
+    <span>Table of Contents</span>
+  </p>
+  <div class="toc-body" id="toc-body"></div>
+</div>
+
+
+
+  </aside>
+
+
+    </div>
+  </div>
+</div>
+
+
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+
+
+
+
+    
+
+    
+      <a id="scroll-top-button" aria-label="TOP" href="#" role="button">
+        <i class="iconfont icon-arrowup" aria-hidden="true"></i>
+      </a>
+    
+
+    
+      <div class="modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-labelledby="ModalLabel"
+     aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h4 class="modal-title w-100 font-weight-bold">Search</h4>
+        <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body mx-3">
+        <div class="md-form mb-5">
+          <input type="text" id="local-search-input" class="form-control validate">
+          <label data-error="x" data-success="v" for="local-search-input">Keyword</label>
+        </div>
+        <div class="list-group" id="local-search-result"></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+    
+
+    
+  </main>
+
+  <footer>
+    <div class="footer-inner">
+  
+    <div class="footer-content">
+       <a href="https://hexo.io" target="_blank" rel="nofollow noopener"><span>Hexo</span></a> <i class="iconfont icon-love"></i> <a href="https://github.com/fluid-dev/hexo-theme-fluid" target="_blank" rel="nofollow noopener"><span>Fluid</span></a> 
+    </div>
+  
+  
+  
+</div>
+
+  </footer>
+
+  <!-- Scripts -->
+  
+  <script  src="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.js" ></script>
+  <link  rel="stylesheet" href="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.css" />
+
+  <script>
+    NProgress.configure({"showSpinner":false,"trickleSpeed":100})
+    NProgress.start()
+    window.addEventListener('load', function() {
+      NProgress.done();
+    })
+  </script>
+
+
+<script  src="https://lib.baomitu.com/jquery/3.6.4/jquery.min.js" ></script>
+<script  src="https://lib.baomitu.com/twitter-bootstrap/4.6.1/js/bootstrap.min.js" ></script>
+<script  src="/js/events.js" ></script>
+<script  src="/js/plugins.js" ></script>
+
+
+  <script  src="https://lib.baomitu.com/typed.js/2.0.12/typed.min.js" ></script>
+  <script>
+    (function (window, document) {
+      var typing = Fluid.plugins.typing;
+      var subtitle = document.getElementById('subtitle');
+      if (!subtitle || !typing) {
+        return;
+      }
+      var text = subtitle.getAttribute('data-typed-text');
+      
+        typing(text);
+      
+    })(window, document);
+  </script>
+
+
+
+
+  
+    <script  src="/js/img-lazyload.js" ></script>
+  
+
+
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/tocbot/4.20.1/tocbot.min.js', function() {
+    var toc = jQuery('#toc');
+    if (toc.length === 0 || !window.tocbot) { return; }
+    var boardCtn = jQuery('#board-ctn');
+    var boardTop = boardCtn.offset().top;
+
+    window.tocbot.init(Object.assign({
+      tocSelector     : '#toc-body',
+      contentSelector : '.markdown-body',
+      linkClass       : 'tocbot-link',
+      activeLinkClass : 'tocbot-active-link',
+      listClass       : 'tocbot-list',
+      isCollapsedClass: 'tocbot-is-collapsed',
+      collapsibleClass: 'tocbot-is-collapsible',
+      scrollSmooth    : true,
+      includeTitleTags: true,
+      headingsOffset  : -boardTop,
+    }, CONFIG.toc));
+    if (toc.find('.toc-list-item').length > 0) {
+      toc.css('visibility', 'visible');
+    }
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('tocbot' in window) {
+        tocbot.refresh();
+        var toc = jQuery('#toc');
+        if (toc.length === 0 || !tocbot) {
+          return;
+        }
+        if (toc.find('.toc-list-item').length > 0) {
+          toc.css('visibility', 'visible');
+        }
+      }
+    });
+  });
+</script>
+
+
+  <script src=https://lib.baomitu.com/clipboard.js/2.0.11/clipboard.min.js></script>
+
+  <script>Fluid.plugins.codeWidget();</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/anchor-js/5.0.0/anchor.min.js', function() {
+    window.anchors.options = {
+      placement: CONFIG.anchorjs.placement,
+      visible  : CONFIG.anchorjs.visible
+    };
+    if (CONFIG.anchorjs.icon) {
+      window.anchors.options.icon = CONFIG.anchorjs.icon;
+    }
+    var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+    var res = [];
+    for (var item of el) {
+      res.push('.markdown-body > ' + item.trim());
+    }
+    if (CONFIG.anchorjs.placement === 'left') {
+      window.anchors.options.class = 'anchorjs-link-left';
+    }
+    window.anchors.add(res.join(', '));
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('anchors' in window) {
+        anchors.removeAll();
+        var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+        var res = [];
+        for (var item of el) {
+          res.push('.markdown-body > ' + item.trim());
+        }
+        if (CONFIG.anchorjs.placement === 'left') {
+          anchors.options.class = 'anchorjs-link-left';
+        }
+        anchors.add(res.join(', '));
+      }
+    });
+  });
+</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.js', function() {
+    Fluid.plugins.fancyBox();
+  });
+</script>
+
+
+  <script>Fluid.plugins.imageCaption();</script>
+
+  <script  src="/js/local-search.js" ></script>
+
+
+
+
+
+<!-- 主题的启动项，将它保持在最底部 -->
+<!-- the boot of the theme, keep it at the bottom -->
+<script  src="/js/boot.js" ></script>
+
+
+  
+
+  <noscript>
+    <div class="noscript-warning">Blog works best with JavaScript enabled</div>
+  </noscript>
+</body>
+</html>
