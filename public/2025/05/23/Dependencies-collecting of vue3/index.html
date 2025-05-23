@@ -1,0 +1,685 @@
+
+
+<!DOCTYPE html>
+<html lang="en" data-default-color-scheme=auto>
+
+
+
+<head>
+  <meta charset="UTF-8">
+
+  <link rel="apple-touch-icon" sizes="76x76" href="/img/fluid.png">
+  <link rel="icon" href="/img/fluid.png">
+  
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, shrink-to-fit=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  
+  <meta name="theme-color" content="#2f4154">
+  <meta name="author" content="jvxiao">
+  <meta name="keywords" content="博客,柯北,Vue,Node,Javascript,Node,React,Webpack Rollup,Vite">
+  
+    <meta name="description" content="从Vue开始较大范围在前端应用开始，关于Vue一些基础知识的讨论和面试问题就在开发圈子里基本上就跟前几年的股票和基金一样，楼下摆摊卖酱香饼的阿姨都能说上几句那种。找过前端开发工作或者正在找开发工作的前端都知道，面试官基本上都有那么几个常问的问题，而网上呢也有那么一套可以用来背诵的“八股文”，自己懂多少没有关系，应付面试官还是够的，可以算是屡试不爽吧。 背诵面试八股文无可厚非的，可以说是每一个找工作">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Vue依赖收集和触发，看这些关键源码">
+<meta property="og:url" content="http://jvxiao.github.io/2025/05/23/Dependencies-collecting%20of%20vue3/index.html">
+<meta property="og:site_name" content="柯北的小屋">
+<meta property="og:description" content="从Vue开始较大范围在前端应用开始，关于Vue一些基础知识的讨论和面试问题就在开发圈子里基本上就跟前几年的股票和基金一样，楼下摆摊卖酱香饼的阿姨都能说上几句那种。找过前端开发工作或者正在找开发工作的前端都知道，面试官基本上都有那么几个常问的问题，而网上呢也有那么一套可以用来背诵的“八股文”，自己懂多少没有关系，应付面试官还是够的，可以算是屡试不爽吧。 背诵面试八股文无可厚非的，可以说是每一个找工作">
+<meta property="og:locale" content="en_US">
+<meta property="article:published_time" content="2025-05-23T11:39:55.334Z">
+<meta property="article:modified_time" content="2025-05-23T11:39:55.334Z">
+<meta property="article:author" content="jvxiao">
+<meta property="article:tag" content="博客">
+<meta property="article:tag" content="柯北">
+<meta property="article:tag" content="Vue">
+<meta property="article:tag" content="Node">
+<meta property="article:tag" content="Javascript">
+<meta property="article:tag" content="Node">
+<meta property="article:tag" content="React">
+<meta property="article:tag" content="Webpack Rollup">
+<meta property="article:tag" content="Vite">
+<meta name="twitter:card" content="summary_large_image">
+  
+  
+  
+  <title>Vue依赖收集和触发，看这些关键源码 - 柯北的小屋</title>
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
+
+
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/github-markdown-css/4.0.0/github-markdown.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/hint.css/2.7.0/hint.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.css" />
+
+
+
+<!-- 主题依赖的图标库，不要自行修改 -->
+<!-- Do not modify the link that theme dependent icons -->
+
+<link rel="stylesheet" href="//at.alicdn.com/t/c/font_1749284_5i9bdhy70f8.css">
+
+
+
+<link rel="stylesheet" href="//at.alicdn.com/t/c/font_1736178_k526ubmyhba.css">
+
+
+<link  rel="stylesheet" href="/css/main.css" />
+
+
+  <link id="highlight-css" rel="stylesheet" href="/css/highlight.css" />
+  
+    <link id="highlight-css-dark" rel="stylesheet" href="/css/highlight-dark.css" />
+  
+
+
+
+
+  <script id="fluid-configs">
+    var Fluid = window.Fluid || {};
+    Fluid.ctx = Object.assign({}, Fluid.ctx)
+    var CONFIG = {"hostname":"jvxiao.github.io","root":"/","version":"1.9.8","typing":{"enable":true,"typeSpeed":70,"cursorChar":"_","loop":false,"scope":[]},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"left","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"code_language":{"enable":true,"default":"TEXT"},"copy_btn":true,"image_caption":{"enable":true},"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"placement":"right","headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":false,"follow_dnt":true,"baidu":null,"google":{"measurement_id":null},"tencent":{"sid":null,"cid":null},"leancloud":{"app_id":null,"app_key":null,"server_url":null,"path":"window.location.pathname","ignore_local":false},"umami":{"src":null,"website_id":null,"domains":null,"start_time":"2024-01-01T00:00:00.000Z","token":null,"api_server":null}},"search_path":"/local-search.xml","include_content_in_search":true};
+
+    if (CONFIG.web_analytics.follow_dnt) {
+      var dntVal = navigator.doNotTrack || window.doNotTrack || navigator.msDoNotTrack;
+      Fluid.ctx.dnt = dntVal && (dntVal.startsWith('1') || dntVal.startsWith('yes') || dntVal.startsWith('on'));
+    }
+  </script>
+  <script  src="/js/utils.js" ></script>
+  <script  src="/js/color-schema.js" ></script>
+  
+
+
+  
+<meta name="generator" content="Hexo 7.3.0"></head>
+
+
+<body>
+  
+
+  <header>
+    
+
+<div class="header-inner" style="height: 70vh;">
+  <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
+  <div class="container">
+    <a class="navbar-brand" href="/">
+      <strong>柯北的小屋</strong>
+    </a>
+
+    <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
+            data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <div class="animated-icon"><span></span><span></span><span></span></div>
+    </button>
+
+    <!-- Collapsible content -->
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ml-auto text-center">
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/" target="_self">
+                <i class="iconfont icon-home-fill"></i>
+                <span>Home</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/archives/" target="_self">
+                <i class="iconfont icon-archive-fill"></i>
+                <span>Archives</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/categories/" target="_self">
+                <i class="iconfont icon-category-fill"></i>
+                <span>Categories</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/tags/" target="_self">
+                <i class="iconfont icon-tags-fill"></i>
+                <span>Tags</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/about/" target="_self">
+                <i class="iconfont icon-user-fill"></i>
+                <span>About</span>
+              </a>
+            </li>
+          
+        
+        
+          <li class="nav-item" id="search-btn">
+            <a class="nav-link" target="_self" href="javascript:;" data-toggle="modal" data-target="#modalSearch" aria-label="Search">
+              <i class="iconfont icon-search"></i>
+            </a>
+          </li>
+          
+        
+        
+          <li class="nav-item" id="color-toggle-btn">
+            <a class="nav-link" target="_self" href="javascript:;" aria-label="Color Toggle">
+              <i class="iconfont icon-dark" id="color-toggle-icon"></i>
+            </a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+</nav>
+
+  
+
+<div id="banner" class="banner" parallax=true
+     style="background: url('/img/default.png') no-repeat center center; background-size: cover;">
+  <div class="full-bg-img">
+    <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
+      <div class="banner-text text-center fade-in-up">
+        <div class="h2">
+          
+            <span id="subtitle" data-typed-text="Vue依赖收集和触发，看这些关键源码"></span>
+          
+        </div>
+
+        
+          
+  <div class="mt-3">
+    
+    
+      <span class="post-meta">
+        <i class="iconfont icon-date-fill" aria-hidden="true"></i>
+        <time datetime="2025-05-23 19:39" pubdate>
+          May 23, 2025 pm
+        </time>
+      </span>
+    
+  </div>
+
+  <div class="mt-1">
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-chart"></i>
+        
+          1.8k words
+        
+      </span>
+    
+
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-clock-fill"></i>
+        
+        
+        
+          15 mins
+        
+      </span>
+    
+
+    
+    
+  </div>
+
+
+        
+      </div>
+
+      
+    </div>
+  </div>
+</div>
+
+</div>
+
+  </header>
+
+  <main>
+    
+      
+
+<div class="container-fluid nopadding-x">
+  <div class="row nomargin-x">
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+
+    </div>
+
+    <div class="col-lg-8 nopadding-x-md">
+      <div class="container nopadding-x-md" id="board-ctn">
+        <div id="board">
+          <article class="post-content mx-auto">
+            <h1 id="seo-header">Vue依赖收集和触发，看这些关键源码</h1>
+            
+            
+              <div class="markdown-body">
+                
+                <p>从Vue开始较大范围在前端应用开始，关于Vue一些基础知识的讨论和面试问题就在开发圈子里基本上就跟前几年的股票和基金一样，楼下摆摊卖酱香饼的阿姨都能说上几句那种。找过前端开发工作或者正在找开发工作的前端都知道，面试官基本上都有那么几个常问的问题，而网上呢也有那么一套可以用来背诵的“八股文”，自己懂多少没有关系，应付面试官还是够的，可以算是屡试不爽吧。</p>
+<p>背诵面试八股文无可厚非的，可以说是每一个找工作的人都干过和必须干的事情，因为我们都要工作，都要恰饭。只有恰上饭，才能去谈些伟大的理想。背“八股文”本是一种捷径，尤其是本身对一门技术不是特别了解的开发者，就是那种刚刚能使用它那种。</p>
+<p>在众多关于Vue的面试“八股文”中，今天讲的是其中最常问的一个–Vue中的依赖收集。本文也将从代码层面，讲清楚关于依赖收集的几个问题。</p>
+<ul>
+<li>收集的依赖是什么？（what）</li>
+<li>怎么收集的依赖？  （how）</li>
+<li>什么时候收集？     (when)</li>
+</ul>
+<p>至于为什么要收集依赖(why)，现在就可以先告诉答案。<strong>收集依赖，其核心作用是在数据发生变化的时候可以做出相应的动作，比如刷新视图</strong>，为了执行这一动作，我们就得知道是谁在什么时候发生了变化，所以我们要收集依赖。</p>
+<p>下面我们结合代码，尽可能通俗的讲解关于上述的三个问题：</p>
+<p>在搞清楚依赖收集之前，先把源码中几个概念性的东西说明一下，建议下载<a target="_blank" rel="noopener" href="https://github.com/vuejs/core">Vue3源码</a>进行对照着看：</p>
+<ul>
+<li><p><strong>Dep</strong>: 本质上是一个Map实例，同时在map实例上绑定一个celanup函数和一个computed属性。</p>
+</li>
+<li><p><strong>ReactiveEffect</strong>: 相当于2.x版本中的Watcher类, 里头有一个deps数组，用来存dep, 每个实例里面都有一个track_id用来标识唯一性。</p>
+</li>
+<li><p><strong>effect函数</strong>： 里头实例化一个ReactiveEffect对象，同时绑定一些options, 返回值是一个runner,实际上是对ReactiveEffect对象行为的一种业务封装。</p>
+</li>
+</ul>
+<p>下面以一行简单的代码开始关于依赖收集的探索。</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs Javascript"><span class="hljs-keyword">const</span> num = <span class="hljs-title function_">ref</span>(<span class="hljs-number">1</span>);<br></code></pre></td></tr></table></figure>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><code class="hljs Javascript"><span class="hljs-comment">// packages/reactivity/src/ref.ts</span><br><span class="hljs-keyword">export</span> <span class="hljs-keyword">function</span> ref&lt;T&gt;(<span class="hljs-attr">value</span>: T): <span class="hljs-title class_">Ref</span>&lt;<span class="hljs-title class_">UnwrapRef</span>&lt;T&gt;&gt;<br><span class="hljs-keyword">export</span> <span class="hljs-keyword">function</span> ref&lt;T = any&gt;(): <span class="hljs-title class_">Ref</span>&lt;T | <span class="hljs-literal">undefined</span>&gt;<br><span class="hljs-keyword">export</span> <span class="hljs-keyword">function</span> <span class="hljs-title function_">ref</span>(<span class="hljs-params">value?: unknown</span>) &#123;<br>  <span class="hljs-keyword">return</span> <span class="hljs-title function_">createRef</span>(value, <span class="hljs-literal">false</span>)<br>&#125;<br></code></pre></td></tr></table></figure>
+<p>ref函数主要是对createRef做了一个函数包装，主要内容看到createRef函数。</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><code class="hljs Javascript"><span class="hljs-comment">// packages/reactivity/src/ref.ts</span><br><span class="hljs-keyword">function</span> <span class="hljs-title function_">createRef</span>(<span class="hljs-params">rawValue: unknown, shallow: boolean</span>) &#123;<br>  <span class="hljs-keyword">if</span> (<span class="hljs-title function_">isRef</span>(rawValue)) &#123;<br>    <span class="hljs-keyword">return</span> rawValue<br>  &#125;<br>  <span class="hljs-keyword">return</span> <span class="hljs-keyword">new</span> <span class="hljs-title class_">RefImpl</span>(rawValue, shallow)<br>&#125;<br></code></pre></td></tr></table></figure>
+<p>createRef函数在这里对原始数据rawValue做了一个判断，如果数据本身就是响应式数据了，就直接返回它本身，如果不是，就返回一个实例化的RefImpl对象。</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br></pre></td><td class="code"><pre><code class="hljs Javascript"><span class="hljs-comment">// packages/reactivity/src/ref.ts</span><br><span class="hljs-keyword">class</span> <span class="hljs-title class_">RefImpl</span>&lt;T&gt; &#123;<br>  private <span class="hljs-attr">_value</span>: T<br>  private <span class="hljs-attr">_rawValue</span>: T<br><br>  public dep?: <span class="hljs-title class_">Dep</span> = <span class="hljs-literal">undefined</span><br>  public readonly __v_isRef = <span class="hljs-literal">true</span><br><br>  <span class="hljs-title function_">constructor</span>(<span class="hljs-params"></span><br><span class="hljs-params">    value: T,</span><br><span class="hljs-params">    public readonly __v_isShallow: boolean,</span><br><span class="hljs-params">  </span>) &#123;<br>    <span class="hljs-variable language_">this</span>.<span class="hljs-property">_rawValue</span> = __v_isShallow ? value : <span class="hljs-title function_">toRaw</span>(value)<br>    <span class="hljs-variable language_">this</span>.<span class="hljs-property">_value</span> = __v_isShallow ? value : <span class="hljs-title function_">toReactive</span>(value)<br>  &#125;<br><br>  <span class="hljs-keyword">get</span> <span class="hljs-title function_">value</span>() &#123;<br>    <span class="hljs-title function_">trackRefValue</span>(<span class="hljs-variable language_">this</span>)<br>    <span class="hljs-keyword">return</span> <span class="hljs-variable language_">this</span>.<span class="hljs-property">_value</span><br>  &#125;<br><br>  <span class="hljs-keyword">set</span> <span class="hljs-title function_">value</span>(<span class="hljs-params">newVal</span>) &#123;<br>    <span class="hljs-keyword">const</span> useDirectValue =<br>      <span class="hljs-variable language_">this</span>.<span class="hljs-property">__v_isShallow</span> || <span class="hljs-title function_">isShallow</span>(newVal) || <span class="hljs-title function_">isReadonly</span>(newVal)<br>    newVal = useDirectValue ? newVal : <span class="hljs-title function_">toRaw</span>(newVal)<br>    <span class="hljs-keyword">if</span> (<span class="hljs-title function_">hasChanged</span>(newVal, <span class="hljs-variable language_">this</span>.<span class="hljs-property">_rawValue</span>)) &#123;<br>      <span class="hljs-variable language_">this</span>.<span class="hljs-property">_rawValue</span> = newVal<br>      <span class="hljs-variable language_">this</span>.<span class="hljs-property">_value</span> = useDirectValue ? newVal : <span class="hljs-title function_">toReactive</span>(newVal)<br>      <span class="hljs-title function_">triggerRefValue</span>(<span class="hljs-variable language_">this</span>, <span class="hljs-title class_">DirtyLevels</span>.<span class="hljs-property">Dirty</span>, newVal)<br>    &#125;<br>  &#125;<br>&#125;<br></code></pre></td></tr></table></figure>
+<p>重点来了，RefImple类里头，才是真正包含了从原始数据变成响应式数据，以及收集依赖的逻辑。在一个refImpl实例中，里面有一个dep对象，初始值是undefined， 这个dep会这trackRefValue函数执行的过程中被赋值。</p>
+<p>下面代码从17-21(get value())行，就是依赖收集的过程：当一个ref型响应式数据通过.value访问时，会触发RefImpl实例中的getter。它会首先执行一个trackValue函数，然后再返回_value值，所以接下来重点看关注trackValue函数，所以<strong>依赖是在数据被访问的时候触发的</strong>。</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><code class="hljs Javascript"><span class="hljs-comment">// packages/reactivity/src/ref.ts</span><br><span class="hljs-keyword">export</span> <span class="hljs-keyword">function</span> <span class="hljs-title function_">trackRefValue</span>(<span class="hljs-params">ref: RefBase&lt;any&gt;</span>) &#123;<br>  <span class="hljs-keyword">if</span> (shouldTrack &amp;&amp; activeEffect) &#123;<br>    ref = <span class="hljs-title function_">toRaw</span>(ref)<br>    <span class="hljs-title function_">trackEffect</span>(<br>      activeEffect,<br>      (ref.<span class="hljs-property">dep</span> ??= <span class="hljs-title function_">createDep</span>(<br>        <span class="hljs-function">() =&gt;</span> (ref.<span class="hljs-property">dep</span> = <span class="hljs-literal">undefined</span>),<br>        ref <span class="hljs-keyword">instanceof</span> <span class="hljs-title class_">ComputedRefImpl</span> ? ref : <span class="hljs-literal">undefined</span>,<br>      )),<br>      __DEV__<br>        ? &#123;<br>            <span class="hljs-attr">target</span>: ref,<br>            <span class="hljs-attr">type</span>: <span class="hljs-title class_">TrackOpTypes</span>.<span class="hljs-property">GET</span>,<br>            <span class="hljs-attr">key</span>: <span class="hljs-string">&#x27;value&#x27;</span>,<br>          &#125;<br>        : <span class="hljs-keyword">void</span> <span class="hljs-number">0</span>,<br>    )<br>  &#125;<br>&#125;u<br></code></pre></td></tr></table></figure>
+
+<p>trackRefValue函数中有两个变量，shouldTrack和activeEffect，暂时我们不去理会它们，只要知道shouldTrack是一个布尔值，activeEffect是一个RectiveEffect实例。</p>
+<p>在shouldTrack值为true且activeEffect有值的情况下，首先会将ref转成原始值，然后再执行trackEffect函数。</p>
+<p>在执行trackEffect函数的中，第一个是activeEffect, 在任意时刻它在全局是具有唯一性的；第二个是ref.dep, 其中给ref.dep的赋值函数createDep返回一个Dep实例，前面说过的，本质是个map; 第三个函数是个对象，是关于开发环境下debug的一些配置。</p>
+<p>在这里，我们可以看到，之前说个的ref实例中原来是undefined的ref.dep赋值，就在此处。</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><code class="hljs Javascript"><span class="hljs-comment">// packages/reactivity/src/effect.ts</span><br><span class="hljs-keyword">export</span> <span class="hljs-keyword">function</span> <span class="hljs-title function_">trackEffect</span>(<span class="hljs-params"></span><br><span class="hljs-params">  effect: ReactiveEffect,</span><br><span class="hljs-params">  dep: Dep,</span><br><span class="hljs-params">  debuggerEventExtraInfo?: DebuggerEventExtraInfo,</span><br><span class="hljs-params"></span>) &#123;<br>  <span class="hljs-keyword">if</span> (dep.<span class="hljs-title function_">get</span>(effect) !== effect.<span class="hljs-property">_trackId</span>) &#123;<br>    dep.<span class="hljs-title function_">set</span>(effect, effect.<span class="hljs-property">_trackId</span>)<br>    <span class="hljs-keyword">const</span> oldDep = effect.<span class="hljs-property">deps</span>[effect.<span class="hljs-property">_depsLength</span>]<br>    <span class="hljs-keyword">if</span> (oldDep !== dep) &#123;<br>      <span class="hljs-keyword">if</span> (oldDep) &#123;<br>        <span class="hljs-title function_">cleanupDepEffect</span>(oldDep, effect)<br>      &#125;<br>      effect.<span class="hljs-property">deps</span>[effect.<span class="hljs-property">_depsLength</span>++] = dep<br>    &#125; <span class="hljs-keyword">else</span> &#123;<br>      effect.<span class="hljs-property">_depsLength</span>++<br>    &#125;<br>    <span class="hljs-keyword">if</span> (__DEV__) &#123;<br>      effect.<span class="hljs-property">onTrack</span>?.(<span class="hljs-title function_">extend</span>(&#123; effect &#125;, debuggerEventExtraInfo!))<br>    &#125;<br>  &#125;<br>&#125;<br></code></pre></td></tr></table></figure>
+<p>trackEffect函数绝对是依赖收集重头戏中的重头戏。</p>
+<p>首先上来就是一个判断，dep, 也就是ref中的dep，本质是个map，判断里面是否存在对应的effect, 如果没有，就执行接下来的操作。</p>
+<p>dep将effect也就是activeEffect作为键，其_trackId作为值添加到dep，<strong>所以我们说的收集的依赖指的就是effect对象</strong>。同时我们得到了一个关于<strong>dep和effect之间的第一关系，即一个dep可以对应多个effect</strong>。</p>
+<p>接着，将effects实例中deps数组中最后一个值取出来与当前的dep值进行比对，看是否是同一个值如果不是同一个值，而且oldDep是有值的，那么就执行cleanupDepEffect操作。如果oldDep为空值，就跳过这一步，直接往effect.deps中添加dep。因此，我们在这里得到了关于dep和effect第二个结论，<strong>一个effect可以对应多个dep</strong>。</p>
+<p>代码还有一部分，接着往下看，在oldDep不等于当前dep的时候，直接对effec_depsLength进行加操作，也就是说，effect.deps值没有变，但是_depsLength值却超出了deps数组边界的情况，这也就是为什么上面要判断oldDep是否存在的原因。</p>
+<p>由上面上面两个结论我们可以得出，一个dep中可以对应多个effect, 一个effect也可以对应多个dep, 因此dep和effect的关系是多对多的关系。</p>
+<h3 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h3><ul>
+<li><p>收集的依赖是什么？（what）</p>
+<blockquote>
+<p>我们常说的收集的依赖是effect对象</p>
+</blockquote>
+</li>
+<li><p>怎么收集的依赖？  （how）</p>
+<blockquote>
+<p>判断当前数据dep中有没有activeEffct, 没有就加进去。把大象关进冰箱里要几步！！！</p>
+</blockquote>
+</li>
+<li><p>什么时候收集？     (when)</p>
+<blockquote>
+<p>在数据被访问时，触发getter，进行依赖收集</p>
+</blockquote>
+</li>
+</ul>
+
+                
+              </div>
+            
+            <hr/>
+            <div>
+              <div class="post-metas my-3">
+  
+  
+</div>
+
+
+              
+  
+
+  <div class="license-box my-3">
+    <div class="license-title">
+      <div>Vue依赖收集和触发，看这些关键源码</div>
+      <div>http://jvxiao.github.io/2025/05/23/Dependencies-collecting of vue3/</div>
+    </div>
+    <div class="license-meta">
+      
+        <div class="license-meta-item">
+          <div>Author</div>
+          <div>jvxiao</div>
+        </div>
+      
+      
+        <div class="license-meta-item license-meta-date">
+          <div>Posted on</div>
+          <div>May 23, 2025</div>
+        </div>
+      
+      
+      
+        <div class="license-meta-item">
+          <div>Licensed under</div>
+          <div>
+            
+              
+              
+                <a class="print-no-link" target="_blank" href="https://creativecommons.org/licenses/by/4.0/">
+                  <span class="hint--top hint--rounded" aria-label="BY - Attribution">
+                    <i class="iconfont icon-cc-by"></i>
+                  </span>
+                </a>
+              
+            
+          </div>
+        </div>
+      
+    </div>
+    <div class="license-icon iconfont"></div>
+  </div>
+
+
+
+              
+                <div class="post-prevnext my-3">
+                  <article class="post-prev col-6">
+                    
+                    
+                      <a href="/2025/05/23/Vite-server-error/" title="糟糕，Vite proxy error ECONNREFUSED">
+                        <i class="iconfont icon-arrowleft"></i>
+                        <span class="hidden-mobile">糟糕，Vite proxy error ECONNREFUSED</span>
+                        <span class="visible-mobile">Previous</span>
+                      </a>
+                    
+                  </article>
+                  <article class="post-next col-6">
+                    
+                    
+                      <a href="/2025/05/23/Differences-between-two-kinds-inherit-approches/" title="Javascript中两种不同的继承方式对比">
+                        <span class="hidden-mobile">Javascript中两种不同的继承方式对比</span>
+                        <span class="visible-mobile">Next</span>
+                        <i class="iconfont icon-arrowright"></i>
+                      </a>
+                    
+                  </article>
+                </div>
+              
+            </div>
+
+            
+          </article>
+        </div>
+      </div>
+    </div>
+
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+  <aside class="sidebar" style="margin-left: -1rem">
+    <div id="toc">
+  <p class="toc-header">
+    <i class="iconfont icon-list"></i>
+    <span>Table of Contents</span>
+  </p>
+  <div class="toc-body" id="toc-body"></div>
+</div>
+
+
+
+  </aside>
+
+
+    </div>
+  </div>
+</div>
+
+
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+
+
+
+
+    
+
+    
+      <a id="scroll-top-button" aria-label="TOP" href="#" role="button">
+        <i class="iconfont icon-arrowup" aria-hidden="true"></i>
+      </a>
+    
+
+    
+      <div class="modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-labelledby="ModalLabel"
+     aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h4 class="modal-title w-100 font-weight-bold">Search</h4>
+        <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body mx-3">
+        <div class="md-form mb-5">
+          <input type="text" id="local-search-input" class="form-control validate">
+          <label data-error="x" data-success="v" for="local-search-input">Keyword</label>
+        </div>
+        <div class="list-group" id="local-search-result"></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+    
+
+    
+  </main>
+
+  <footer>
+    <div class="footer-inner">
+  
+    <div class="footer-content">
+       <a href="https://hexo.io" target="_blank" rel="nofollow noopener"><span>Hexo</span></a> <i class="iconfont icon-love"></i> <a href="https://github.com/fluid-dev/hexo-theme-fluid" target="_blank" rel="nofollow noopener"><span>Fluid</span></a> 
+    </div>
+  
+  
+  
+</div>
+
+  </footer>
+
+  <!-- Scripts -->
+  
+  <script  src="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.js" ></script>
+  <link  rel="stylesheet" href="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.css" />
+
+  <script>
+    NProgress.configure({"showSpinner":false,"trickleSpeed":100})
+    NProgress.start()
+    window.addEventListener('load', function() {
+      NProgress.done();
+    })
+  </script>
+
+
+<script  src="https://lib.baomitu.com/jquery/3.6.4/jquery.min.js" ></script>
+<script  src="https://lib.baomitu.com/twitter-bootstrap/4.6.1/js/bootstrap.min.js" ></script>
+<script  src="/js/events.js" ></script>
+<script  src="/js/plugins.js" ></script>
+
+
+  <script  src="https://lib.baomitu.com/typed.js/2.0.12/typed.min.js" ></script>
+  <script>
+    (function (window, document) {
+      var typing = Fluid.plugins.typing;
+      var subtitle = document.getElementById('subtitle');
+      if (!subtitle || !typing) {
+        return;
+      }
+      var text = subtitle.getAttribute('data-typed-text');
+      
+        typing(text);
+      
+    })(window, document);
+  </script>
+
+
+
+
+  
+    <script  src="/js/img-lazyload.js" ></script>
+  
+
+
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/tocbot/4.20.1/tocbot.min.js', function() {
+    var toc = jQuery('#toc');
+    if (toc.length === 0 || !window.tocbot) { return; }
+    var boardCtn = jQuery('#board-ctn');
+    var boardTop = boardCtn.offset().top;
+
+    window.tocbot.init(Object.assign({
+      tocSelector     : '#toc-body',
+      contentSelector : '.markdown-body',
+      linkClass       : 'tocbot-link',
+      activeLinkClass : 'tocbot-active-link',
+      listClass       : 'tocbot-list',
+      isCollapsedClass: 'tocbot-is-collapsed',
+      collapsibleClass: 'tocbot-is-collapsible',
+      scrollSmooth    : true,
+      includeTitleTags: true,
+      headingsOffset  : -boardTop,
+    }, CONFIG.toc));
+    if (toc.find('.toc-list-item').length > 0) {
+      toc.css('visibility', 'visible');
+    }
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('tocbot' in window) {
+        tocbot.refresh();
+        var toc = jQuery('#toc');
+        if (toc.length === 0 || !tocbot) {
+          return;
+        }
+        if (toc.find('.toc-list-item').length > 0) {
+          toc.css('visibility', 'visible');
+        }
+      }
+    });
+  });
+</script>
+
+
+  <script src=https://lib.baomitu.com/clipboard.js/2.0.11/clipboard.min.js></script>
+
+  <script>Fluid.plugins.codeWidget();</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/anchor-js/5.0.0/anchor.min.js', function() {
+    window.anchors.options = {
+      placement: CONFIG.anchorjs.placement,
+      visible  : CONFIG.anchorjs.visible
+    };
+    if (CONFIG.anchorjs.icon) {
+      window.anchors.options.icon = CONFIG.anchorjs.icon;
+    }
+    var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+    var res = [];
+    for (var item of el) {
+      res.push('.markdown-body > ' + item.trim());
+    }
+    if (CONFIG.anchorjs.placement === 'left') {
+      window.anchors.options.class = 'anchorjs-link-left';
+    }
+    window.anchors.add(res.join(', '));
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('anchors' in window) {
+        anchors.removeAll();
+        var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+        var res = [];
+        for (var item of el) {
+          res.push('.markdown-body > ' + item.trim());
+        }
+        if (CONFIG.anchorjs.placement === 'left') {
+          anchors.options.class = 'anchorjs-link-left';
+        }
+        anchors.add(res.join(', '));
+      }
+    });
+  });
+</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.js', function() {
+    Fluid.plugins.fancyBox();
+  });
+</script>
+
+
+  <script>Fluid.plugins.imageCaption();</script>
+
+  <script  src="/js/local-search.js" ></script>
+
+
+
+
+
+<!-- 主题的启动项，将它保持在最底部 -->
+<!-- the boot of the theme, keep it at the bottom -->
+<script  src="/js/boot.js" ></script>
+
+
+  
+
+  <noscript>
+    <div class="noscript-warning">Blog works best with JavaScript enabled</div>
+  </noscript>
+</body>
+</html>
