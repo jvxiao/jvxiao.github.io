@@ -32,7 +32,7 @@ jobs:
       - name: Install Dependencies
         run: npm install
       - name: Build
-        run:  echo "123123" > public/1.text
+        run: npm run build
       - name: Upload Pages artifact
         uses: actions/upload-pages-artifact@v3
         with:
