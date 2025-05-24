@@ -19,16 +19,16 @@
   <meta name="author" content="jvxiao">
   <meta name="keywords" content="博客,柯北,Vue,Node,Javascript,Node,React,Webpack Rollup,Vite">
   
-    <meta name="description" content="title:关于微信云托管对象存储那点事最近在鼓捣一个关于图像处理相关的小程序，出于快速开发考虑，在后台开发这块，没有选择走传统的后台部署服务。毕竟，购买云服务器，注册购买域名以及备案等一系列操作下来，也够让人心累。 这次选择的是微信开发的平台的云托管，至于为什么走的不是云函数开发，其中就涉及到了开发语言的选择–python, 如果改用javascript重写一下，成本有点高，所以最终方案选择云">
+    <meta name="description" content="最近在鼓捣一个关于图像处理相关的小程序，出于快速开发考虑，在后台开发这块，没有选择走传统的后台部署服务。毕竟，购买云服务器，注册购买域名以及备案等一系列操作下来，也够让人心累。 这次选择的是微信开发的平台的云托管，至于为什么走的不是云函数开发，其中就涉及到了开发语言的选择–python, 如果改用javascript重写一下，成本有点高，所以最终方案选择云托管。 在按照云托管的部署流程一通走下来后">
 <meta property="og:type" content="article">
-<meta property="og:title" content="柯北的小屋">
+<meta property="og:title" content="关于微信云托管对象存储那点事">
 <meta property="og:url" content="http://jvxiao.github.io/2025/05/23/Manage-wx-could-service/index.html">
 <meta property="og:site_name" content="柯北的小屋">
-<meta property="og:description" content="title:关于微信云托管对象存储那点事最近在鼓捣一个关于图像处理相关的小程序，出于快速开发考虑，在后台开发这块，没有选择走传统的后台部署服务。毕竟，购买云服务器，注册购买域名以及备案等一系列操作下来，也够让人心累。 这次选择的是微信开发的平台的云托管，至于为什么走的不是云函数开发，其中就涉及到了开发语言的选择–python, 如果改用javascript重写一下，成本有点高，所以最终方案选择云">
+<meta property="og:description" content="最近在鼓捣一个关于图像处理相关的小程序，出于快速开发考虑，在后台开发这块，没有选择走传统的后台部署服务。毕竟，购买云服务器，注册购买域名以及备案等一系列操作下来，也够让人心累。 这次选择的是微信开发的平台的云托管，至于为什么走的不是云函数开发，其中就涉及到了开发语言的选择–python, 如果改用javascript重写一下，成本有点高，所以最终方案选择云托管。 在按照云托管的部署流程一通走下来后">
 <meta property="og:locale" content="en_US">
 <meta property="og:image" content="http://jvxiao.github.io/2025/05/23/docs/imgs/%E5%BE%AE%E4%BF%A1%E4%BA%91%E5%AF%B9%E8%B1%A1%E5%AD%98%E5%82%A8..png">
 <meta property="article:published_time" content="2025-05-23T11:39:55.334Z">
-<meta property="article:modified_time" content="2025-05-23T11:39:55.334Z">
+<meta property="article:modified_time" content="2025-05-23T12:32:04.441Z">
 <meta property="article:author" content="jvxiao">
 <meta property="article:tag" content="博客">
 <meta property="article:tag" content="柯北">
@@ -43,8 +43,10 @@
 <meta name="twitter:image" content="http://jvxiao.github.io/2025/05/23/docs/imgs/%E5%BE%AE%E4%BF%A1%E4%BA%91%E5%AF%B9%E8%B1%A1%E5%AD%98%E5%82%A8..png">
   
   
+    <meta name="referrer" content="no-referrer-when-downgrade">
   
-  <title>柯北的小屋</title>
+  
+  <title>关于微信云托管对象存储那点事 - 柯北的小屋</title>
 
   <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
 
@@ -82,7 +84,7 @@
   <script id="fluid-configs">
     var Fluid = window.Fluid || {};
     Fluid.ctx = Object.assign({}, Fluid.ctx)
-    var CONFIG = {"hostname":"jvxiao.github.io","root":"/","version":"1.9.8","typing":{"enable":true,"typeSpeed":70,"cursorChar":"_","loop":false,"scope":[]},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"left","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"code_language":{"enable":true,"default":"TEXT"},"copy_btn":true,"image_caption":{"enable":true},"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"placement":"right","headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":false,"follow_dnt":true,"baidu":null,"google":{"measurement_id":null},"tencent":{"sid":null,"cid":null},"leancloud":{"app_id":null,"app_key":null,"server_url":null,"path":"window.location.pathname","ignore_local":false},"umami":{"src":null,"website_id":null,"domains":null,"start_time":"2024-01-01T00:00:00.000Z","token":null,"api_server":null}},"search_path":"/local-search.xml","include_content_in_search":true};
+    var CONFIG = {"hostname":"jvxiao.github.io","root":"/","version":"1.9.8","typing":{"enable":true,"typeSpeed":70,"cursorChar":"_","loop":false,"scope":[]},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"left","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"code_language":{"enable":true,"default":"TEXT"},"copy_btn":true,"image_caption":{"enable":true},"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"placement":"right","headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":true,"follow_dnt":true,"baidu":"dc09afa0e535b171bffc54b67c6ca65d","google":{"measurement_id":"G-SBWM2JEKZ8"},"tencent":{"sid":null,"cid":null},"leancloud":{"app_id":null,"app_key":null,"server_url":null,"path":"window.location.pathname","ignore_local":false},"umami":{"src":null,"website_id":null,"domains":null,"start_time":"2024-01-01T00:00:00.000Z","token":null,"api_server":null}},"search_path":"/local-search.xml","include_content_in_search":true};
 
     if (CONFIG.web_analytics.follow_dnt) {
       var dntVal = navigator.doNotTrack || window.doNotTrack || navigator.msDoNotTrack;
@@ -92,6 +94,44 @@
   <script  src="/js/utils.js" ></script>
   <script  src="/js/color-schema.js" ></script>
   
+
+  
+    <!-- Baidu Analytics -->
+    <script async>
+      if (!Fluid.ctx.dnt) {
+        var _hmt = _hmt || [];
+        (function() {
+          var hm = document.createElement("script");
+          hm.src = "https://hm.baidu.com/hm.js?dc09afa0e535b171bffc54b67c6ca65d";
+          var s = document.getElementsByTagName("script")[0];
+          s.parentNode.insertBefore(hm, s);
+        })();
+      }
+    </script>
+  
+
+  
+    <!-- Google tag (gtag.js) -->
+    <script async>
+      if (!Fluid.ctx.dnt) {
+        Fluid.utils.createScript("https://www.googletagmanager.com/gtag/js?id=G-SBWM2JEKZ8", function() {
+          window.dataLayer = window.dataLayer || [];
+          function gtag() {
+            dataLayer.push(arguments);
+          }
+          gtag('js', new Date());
+          gtag('config', 'G-SBWM2JEKZ8');
+        });
+      }
+    </script>
+  
+
+  
+
+  
+
+  
+
 
 
   
@@ -210,7 +250,7 @@
       <div class="banner-text text-center fade-in-up">
         <div class="h2">
           
-            <span id="subtitle" data-typed-text=""></span>
+            <span id="subtitle" data-typed-text="关于微信云托管对象存储那点事"></span>
           
         </div>
 
@@ -244,12 +284,21 @@
         
         
         
-          19 mins
+          18 mins
         
       </span>
     
 
     
+    
+      
+        <span id="busuanzi_container_page_pv" style="display: none">
+          <i class="iconfont icon-eye" aria-hidden="true"></i>
+          <span id="busuanzi_value_page_pv"></span> views
+        </span>
+        
+
+      
     
   </div>
 
@@ -281,13 +330,20 @@
       <div class="container nopadding-x-md" id="board-ctn">
         <div id="board">
           <article class="post-content mx-auto">
-            <h1 id="seo-header"></h1>
+            <h1 id="seo-header">关于微信云托管对象存储那点事</h1>
+            
+              <p id="updated-time" class="note note-info" style="">
+                
+                  
+                    Last updated on May 23, 2025 pm
+                  
+                
+              </p>
             
             
               <div class="markdown-body">
                 
-                <hr>
-<h2 id="title-关于微信云托管对象存储那点事"><a href="#title-关于微信云托管对象存储那点事" class="headerlink" title="title:关于微信云托管对象存储那点事"></a>title:关于微信云托管对象存储那点事</h2><p>最近在鼓捣一个关于图像处理相关的小程序，出于快速开发考虑，在后台开发这块，没有选择走传统的后台部署服务。毕竟，购买云服务器，注册购买域名以及备案等一系列操作下来，也够让人心累。</p>
+                <p>最近在鼓捣一个关于图像处理相关的小程序，出于快速开发考虑，在后台开发这块，没有选择走传统的后台部署服务。毕竟，购买云服务器，注册购买域名以及备案等一系列操作下来，也够让人心累。</p>
 <p>这次选择的是微信开发的平台的云托管，至于为什么走的不是云函数开发，其中就涉及到了开发语言的选择–python, 如果改用javascript重写一下，成本有点高，所以最终方案选择云托管。</p>
 <p>在按照云托管的部署流程一通走下来后，everything is fine. But…</p>
 <p>离大谱的，接口请求和响应，居然不能超过1M, 而我这程序就是关于图像处理的，动不动图片大小就会超过1M。如果非要限制用户图片大小限制在1M以下，太过影响用户体验。</p>
@@ -350,7 +406,7 @@
 
   <div class="license-box my-3">
     <div class="license-title">
-      <div></div>
+      <div>关于微信云托管对象存储那点事</div>
       <div>http://jvxiao.github.io/2025/05/23/Manage-wx-could-service/</div>
     </div>
     <div class="license-meta">
@@ -509,9 +565,35 @@
     <div class="footer-inner">
   
     <div class="footer-content">
-       <a href="https://hexo.io" target="_blank" rel="nofollow noopener"><span>Hexo</span></a> <i class="iconfont icon-love"></i> <a href="https://github.com/fluid-dev/hexo-theme-fluid" target="_blank" rel="nofollow noopener"><span>Fluid</span></a> 
+       <a href="https://hexo.io" target="_blank" rel="nofollow noopener"><span></span></a> <i class="iconfont icon-love"></i> <a href="https://github.com/fluid-dev/hexo-theme-fluid" target="_blank" rel="nofollow noopener"><span>Fluid</span></a> 
     </div>
   
+  
+    <div class="statistics">
+  
+  
+
+  
+    
+      <span id="busuanzi_container_site_pv" style="display: none">
+        Views: 
+        <span id="busuanzi_value_site_pv"></span>
+        
+      </span>
+    
+    
+      <span id="busuanzi_container_site_uv" style="display: none">
+        Visitors: 
+        <span id="busuanzi_value_site_uv"></span>
+        
+      </span>
+    
+    
+
+  
+
+</div>
+
   
   
 </div>
@@ -657,6 +739,8 @@
   <script>Fluid.plugins.imageCaption();</script>
 
   <script  src="/js/local-search.js" ></script>
+
+  <script defer src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js" ></script>
 
 
 
