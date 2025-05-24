@@ -105,3 +105,9 @@ theme: fluid
 ## Docs: https://hexo.io/docs/one-command-deployment
 deploy:
   type: ''
+
+# sitemap
+sitemap:
+  path: sitemap.xml
+  prettyURLs:
+    trailingSlash: false
