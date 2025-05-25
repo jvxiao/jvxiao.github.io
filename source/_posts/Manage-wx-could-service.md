@@ -17,7 +17,7 @@ title: 关于微信云托管对象存储那点事
 
 <!-- ![处理流程](./imgs/微信云对象存储..png) -->
 <div align="center">
-    <img src="../docs/imgs/微信云对象存储..png" width="80%" height="20%" alt="处理流程"/>
+    <img src="/imgs/微信云对象存储..png" width="80%" height="20%" alt="处理流程"/>
 </div>
 
 
