@@ -1,5 +1,10 @@
 ---
 title: 糟糕，Vite proxy error ECONNREFUSED
+date: 2025-05-23 12:40:00
+tags:
+  - Vite
+  - Proxy
+  - error
 --- 
 
 最近正在开发一款应用，前端框架是vite+vue, 后台服务也是使用的node+express组合，当一切工作都在顺利进行的时候，不出意外，意外出现了。

@@ -1,6 +1,10 @@
 
 ---
 title: Javascript中两种不同的继承方式对比
+date: 2025-05-23 12:40:00
+targs:
+  - Javascript
+  - 继承
 ---
 
 # Dog.prototype = new Animal() 和 Dog.prototype.proto = Animal.prototype的两种继承方式的区别
