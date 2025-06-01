@@ -24,7 +24,7 @@ tags:
 
 作为一个明日的大佬，自己动手整个独立博客，想必对大家来说也不是什么难事。
 
-## 技术选型
+## 考虑因素
 
 既然选择建独立博客，那么我们需要考虑以下几个问题了：
 
@@ -39,7 +39,73 @@ tags:
 
 因此，我更倾向选择的是不使用前后端，使用静态内容托管的方式来搭建自己的博客。正如前面所说的，一个个人博客站重要的是内容输出，戏台子搭得大和漂亮没有多少用，重要的是你的戏是否能够吸引观众。
 
-既然是使用静态托管平台，那么可供选择的方案有很多，
+## 技术选型
 
-https://github.com/lmk123/blog/issues/55
+既然是使用静态托管平台，那么可供选择的方案有很多：
+  
+  - [GitHub Pages](https://pages.github.com/): 自带域名可 https 访问; 可配置自定义域名
+  - [Bitbucket Cloud](https://confluence.atlassian.com/bitbucket/publishing-a-website-on-bitbucket-cloud-221449776.html): 能且只能通过 https 协议访问; 无法自定义域名
+  - [GitLab Pages](https://docs.gitlab.com/ee/user/project/pages/index.html): 同样跟 GitHub Pages 的功能一样
+  - [Netlify](https://www.netlify.com/): 可以使用 CLI 上传代码; 支持自动构建
+
+在这里，比较推荐 Github Page 和 Netlify, 主要原因有两个：一个是比较能装，另一个是比较能装！
+
+## Github page 建站
+
+下面演示一下Github Page生成一个简单的个人站点名称，Netlify 可以自行探索一下，这里不做讲解。
+
+使用Github Page 建站，首先，你需要有一个Github 账号，如果没有，先去注册一个，注册时记得取个好一点的名字，后面有用。
+
+- **登录github, 新建一个与你名字同名的repository**
+
+登录到Github首页之后，点击右上角 `+` 号，选择 `new repository` 跳转到新建仓库页面。
+
+![step1](../imgs/build-blogs2/step1.png)
+
+其中，`repository name` 一定要是 `你的英文名称.github.io`，比如我的英文名称是`jvxiaome`， 那么我的仓库名称就是 `jvxiaome.github.io`，这个后面也是访问博客站点首页的网址，所以前面说取一个好听的名字，是有道理的。
+
+仓库的可见性选择 `Public`, 另外下面的 `Add a README file` 也可以勾上，会方便一些，至于剩下的内容，看个人需要，不清楚的可以暂时不填，最后确认 `Create repository`。
+
+
+
+![step2](../imgs/build-blogs2/step2.png)
+
+
+- **编辑一个你的博客主页**
+
+进入到刚刚新建的仓库，点击`add file` 新建一个文件
+
+
+![step3](../imgs/build-blogs2/step3.png)
+
+文件名称取名为 `index.html`, 这个文件中包含的就是博客主页的内容了，具体想写什么可以自由发挥
+
+![step4](../imgs/build-blogs2/step4.png)
+
+写完之后点击 `commit changes` 提交内容到仓库，到这一步，你的博客站就算是基本建立起来了
+![step5](../imgs/build-blogs2/step5.png)
+
+
+- **访问验证**
+
+既然博客站点已经建好了，此时是不是特别期待访问自己的博客首页呢。
+
+正如前面所说的，你的仓库名称（你的英文名称.github.io）就是你的博客首页名称，以上面的例子来说，访问 `jvxiaome.github.io` 就能直接看见首页效果了。
+
+虽然整个页面都在诉说着朴素(~~丑~~)，但一点也不影响你拥有一个属于自己博客站点的那份喜悦。都18+了，怎么能没有自己的网站呢。
+
+![step6](../imgs/build-blogs2/step6.png)
+
+## 写在最后
+
+有了自己的博客网站，还有了域名，而这一切，不是个结束，而是开始。
+
+如何使用工具，使用主题，搭建一个简洁，漂亮的[博客网站](../imgs/build-blogs2/my-sit.png)，这将是下一篇文中的重点。
+
+
+
+
+
+
+<!-- https://github.com/lmk123/blog/issues/55 -->
 
