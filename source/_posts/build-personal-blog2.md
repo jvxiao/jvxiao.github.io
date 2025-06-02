@@ -18,9 +18,9 @@ tags:
 
 目前呢，搭建个人博客的方式主要有以下几种：
 
-  - **社区平台**：像博客园，CSDN, 知乎，简书，微博，公众号，QQ空间等，注册一个账号就Okay了。当然了，既然是社区平台，也就意味着没有独立的网站。
+  - **社区平台**：像`博客园`，`CSDN`, `知乎`，`微博`，`公众号`，`QQ空间`等，注册一个账号就Okay了。当然了，既然是社区平台，也就意味着没有独立的网站。
 
-  - **独立博客**: 有自己的网站，博客框架的搭建，内容的发布，都是由自己完成。对未接触过编程的人来说，上手有一定难度。比较适合有一定编程基础，然后又像挑战一下自己那种。
+  - **独立博客**: 有自己的网站，博客框架的搭建，内容的发布，都是由自己完成。对未接触过编程的人来说，上手有一定难度。比较适合有一定编程基础，然后又想挑战一下自己那种的同学。
 
 作为一个明日的大佬，自己动手整个独立博客，想必对大家来说也不是什么难事。
 
@@ -43,10 +43,10 @@ tags:
 
 既然是使用静态托管平台，那么可供选择的方案有很多：
   
-  - [GitHub Pages](https://pages.github.com/): 自带域名可 https 访问; 可配置自定义域名
-  - [Bitbucket Cloud](https://confluence.atlassian.com/bitbucket/publishing-a-website-on-bitbucket-cloud-221449776.html): 能且只能通过 https 协议访问; 无法自定义域名
-  - [GitLab Pages](https://docs.gitlab.com/ee/user/project/pages/index.html): 同样跟 GitHub Pages 的功能一样
-  - [Netlify](https://www.netlify.com/): 可以使用 CLI 上传代码; 支持自动构建
+  - **[GitHub Pages](https://pages.github.com/)**: 自带域名可 https 访问; 可配置自定义域名
+  - **[Bitbucket Cloud](https://confluence.atlassian.com/bitbucket/publishing-a-website-on-bitbucket-cloud-221449776.html)**: 能且只能通过 https 协议访问; 无法自定义域名
+  - **[GitLab Pages](https://docs.gitlab.com/ee/user/project/pages/index.html)**: 同样跟 GitHub Pages 的功能一样
+  - **[Netlify](https://www.netlify.com/)**: 可以使用 CLI 上传代码; 支持自动构建
 
 在这里，比较推荐 Github Page 和 Netlify, 主要原因有两个：一个是比较能装，另一个是比较能装！
 
@@ -60,7 +60,7 @@ tags:
 
 登录到Github首页之后，点击右上角 `+` 号，选择 `new repository` 跳转到新建仓库页面。
 
-![step1](../imgs/build-blogs2/step1.png)
+![step1](https://image.baidu.com/search/down?url=https://tvax4.sinaimg.cn/large/0071fJItgy1i21b6hl5rlj31i70xpe0n.jpg)
 
 其中，`repository name` 一定要是 `你的英文名称.github.io`，比如我的英文名称是`jvxiaome`， 那么我的仓库名称就是 `jvxiaome.github.io`，这个后面也是访问博客站点首页的网址，所以前面说取一个好听的名字，是有道理的。
 
@@ -68,7 +68,7 @@ tags:
 
 
 
-![step2](../imgs/build-blogs2/step2.png)
+![step2](https://image.baidu.com/search/down?url=http://tvax3.sinaimg.cn/large/0071fJItgy1i21ba20naej31aa1ah1ba.jpg)
 
 
 - **编辑一个你的博客主页**
@@ -76,14 +76,14 @@ tags:
 进入到刚刚新建的仓库，点击`add file` 新建一个文件
 
 
-![step3](../imgs/build-blogs2/step3.png)
+![step3](https://image.baidu.com/search/down?url=http://tvax2.sinaimg.cn/large/0071fJItgy1i21batizraj31gl0ufn95.jpg)
 
 文件名称取名为 `index.html`, 这个文件中包含的就是博客主页的内容了，具体想写什么可以自由发挥
 
-![step4](../imgs/build-blogs2/step4.png)
+![step4](https://image.baidu.com/search/down?url=http://tvax4.sinaimg.cn/large/0071fJItgy1i21bb808bfj31zr0thgzj.jpg)
 
 写完之后点击 `commit changes` 提交内容到仓库，到这一步，你的博客站就算是基本建立起来了
-![step5](../imgs/build-blogs2/step5.png)
+![step5](https://image.baidu.com/search/down?url=http://tvax2.sinaimg.cn/large/0071fJItgy1i21bc83oxuj31eu0vyduh.jpg)
 
 
 - **访问验证**
@@ -94,13 +94,13 @@ tags:
 
 虽然整个页面都在诉说着朴素(~~丑~~)，但一点也不影响你拥有一个属于自己博客站点的那份喜悦。都18+了，怎么能没有自己的网站呢。
 
-![step6](../imgs/build-blogs2/step6.png)
+![step6](https://image.baidu.com/search/down?url=http://tvax3.sinaimg.cn/large/0071fJItgy1i21bcpjfruj310d0k2go1.jpg)
 
 ## 写在最后
 
 有了自己的博客网站，还有了域名，而这一切，不是个结束，而是开始。
 
-如何使用工具，使用主题，搭建一个简洁，漂亮的[博客网站](../imgs/build-blogs2/my-sit.png)，这将是下一篇文中的重点。
+如何使用工具，使用主题，搭建一个简洁，漂亮的[博客网站](![my-sit](https://image.baidu.com/search/down?url=http://tvax1.sinaimg.cn/large/0071fJItgy1i21bddtgjjj32cu1h8x6q.jpg))，这将是下一篇文中的重点。
 
 
 
