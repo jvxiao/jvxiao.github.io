@@ -105,10 +105,21 @@ theme: fluid
 # Deployment
 ## Docs: https://hexo.io/docs/one-command-deployment
 deploy:
-  type: ''
+- type: git
+  repo:
+    github: git@github.com:jvxiao/jvxiao.github.io.git  # Github地址
+  branch: master
+- type: baidu_url_submitter
 
 # sitemap
 sitemap:
   path: sitemap.xml
   prettyURLs:
     trailingSlash: false
+
+# 百度推送url
+baidu_url_submit:
+  count: 10  # 比如10，代表提交最新的10个链接
+  host: www.jvxiao.cn # 在百度站长平台中注册的域名
+  token: sUfolnWy2AHlTMs7 # 百度站长密钥
+  path: baidu_urls.txt # 文本文档的地址， 新链接会保存在此文本文档里，这个默认
