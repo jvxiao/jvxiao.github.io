@@ -4,9 +4,9 @@
 
 # Site
 title: 柯北的小屋
-subtitle: ''
-description: ''
-keywords: [柯北, jvxiao, Vue, Node, Javascript, Node, React, Webpack Rollup, Vite]
+subtitle: '「从初级到资深：大前端开发者的进阶笔记本'
+description: '大前端全栈开发博客，聚焦 Vue3+Node.js 全栈实践、Electron 桌面应用开发、Web性能优化及 Serverless 架构探索。分享 TypeScript 类型体操、CI/CD 自动化部署、低代码平台设计等工程化经验，结合行业案例解读技术趋势，为前端开发者打造一站式知识升级平台'
+keywords: [前端技术博客, 大前端框架, 跨端开发, Web性能优化, jvxiao]
 author: jvxiao
 language: en
 timezone: ''
