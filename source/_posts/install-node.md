@@ -1,7 +1,8 @@
 ---
-title: Node安装，保姆级教程
+title: Node安装保姆级教程
 date: 2025-06-08 18:08:43
 tags: [Node安装, npm]
+keywords: [Node安装，如何安装Node, Windows上安装Node]
 ---
 
 ## 方法1：安装包安装
@@ -10,23 +11,18 @@ tags: [Node安装, npm]
 ![Node安装](../imgs/build-blog3/NodeSite.png)
 
 - **step2** 双击安装包，开始安装, 傻瓜式的点击 `Next`.
-
 ![Node安装](../imgs/build-blog3/Node1.png)
 
-点击 `next`
+  点击 `next`
+  ![Node安装](../imgs/build-blog3/Node2.png)
 
-![Node安装](../imgs/build-blog3/Node2.png)
-
-如果你不想Node默认安装在C盘目录下，可以在这一步修改安装盘
-
+  如果你不想Node默认安装在C盘目录下，可以在这一步修改安装盘
 ![Node安装](../imgs/build-blog3/Node3.png)
 
-点击 `next`
-
+  点击 `next`
 ![Node安装](../imgs/build-blog3/Node4.png)
 
-点击 `Install`
-
+  点击 `Install`
 ![Node安装](../imgs/build-blog3/Node5.png)
 
 ## 方法2：可移动二进制文件安装
