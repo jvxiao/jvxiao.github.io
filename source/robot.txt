@@ -1,0 +1,27 @@
+
+# 允许所有用户代理的浏览器爬虫进行访问（爬起数据）
+User-agent: *
+
+# 允许访问的内容
+Allow: /
+Allow: /about/
+Allow: /archives/
+Allow: /categories/
+Allow: /posts/
+Allow: /tags/
+
+# 不允许访问的内容
+Disallow: /assets/
+Disallow: /fonts/
+Disallow: /img/
+Disallow: /js/
+Disallow: /music/
+Disallow: /css/
+Disallow: /links/
+
+
+Disallow: /*.js
+Disallow: /*.css
+
+# 网站地图Sitemap
+Sitemap: https://www.jvxiao.cn/sitemap.xml
