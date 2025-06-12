@@ -484,8 +484,8 @@ footer:
 index:
   # 首页 Banner 头图，可以是相对路径或绝对路径，以下相同
   # Path of Banner image, can be a relative path or an absolute path, the same on other pages
-  banner_img: https://image.baidu.com/search/down?url=https://tvax3.sinaimg.cn/large/0071fJItgy1i2cvvz2jwej34mo334k6i.jpg
-
+  #banner_img: https://image.baidu.com/search/down?url=https://tvax3.sinaimg.cn/large/0071fJItgy1i2cvvz2jwej34mo334k6i.jpg
+  banner_img: /img/wild-fire.jpg
   # 头图高度，屏幕百分比
   # Height ratio of banner image
   # Available: 0 - 100
