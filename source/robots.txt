@@ -4,11 +4,11 @@ User-agent: *
 
 # 允许访问的内容
 Allow: /
+Allow: /posts/
 Allow: /about/
 Allow: /archives/
 Allow: /categories/
-Allow: /posts/
-Allow: /tags/
+
 
 # 不允许访问的内容
 Disallow: /assets/
