@@ -36,7 +36,9 @@ jobs:
       - name: Upload Pages artifact
         uses: actions/upload-pages-artifact@v3
         with:
-          path: ./public
+          path: |
+            ./public
+            ./db.json
   deploy:
     needs: build
     permissions:
