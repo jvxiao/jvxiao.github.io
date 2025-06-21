@@ -1,6 +1,7 @@
 ---
 title: 糟糕，Vite proxy error ECONNREFUSED
 date: 2025-05-23 12:40:00
+category: Web开发
 tags:
   - Vite
   - Proxy

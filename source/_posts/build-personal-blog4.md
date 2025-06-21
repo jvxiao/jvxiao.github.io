@@ -1,6 +1,7 @@
 ---
 title: 搭建个人博客系列--(4) 利用Github Actions自动构建博客
 date: 2025-06-14 15:37:45
+category: 搭建博客
 tags: 
    - 博客搭建
    - 个人IP

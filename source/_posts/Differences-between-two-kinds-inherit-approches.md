@@ -2,6 +2,7 @@
 ---
 title: Javascript中两种不同的继承方式对比
 date: 2025-05-23 12:40:00
+category: Web开发
 targs:
   - Javascript
   - 继承

@@ -1,6 +1,7 @@
 ---
 title: Vue依赖收集和触发，看这些关键源码
 date: 2025-05-23 12:40:00
+category: Vue源码阅读
 tags:
   - Vue
   - 源码阅读

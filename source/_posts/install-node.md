@@ -1,6 +1,7 @@
 ---
 title: Node安装保姆级教程
 date: 2025-06-08 18:08:43
+category: Web开发
 tags: [Node安装, npm]
 keywords: [Node安装，如何安装Node, Windows上安装Node]
 ---
