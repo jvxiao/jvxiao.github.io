@@ -8,27 +8,27 @@ category: Web开发
 
 **1991年**，有个叫蒂姆・博纳斯・李的英国科学家，写了世界上第一个静态网页。这个牛人不仅创造了超文本标记语言（HTML），而且还开发出世界上第一个网页浏览器，同时也由此发明了万维网(World Wide Web), 因此他也被称为万维网之父。
 
-![](../imgs/web-history/TIM.png)
+![蒂姆・博纳斯・李](https://www.jvxiao.cn/imgs/web-history/TIM.png)
 
 早期的网页是静态的，当时的HTML标签并不丰富，当时的内容除了直接链接条状之外，没有任何的交互。到了**1994年**的时候，当时有一家有名的浏览器公司，大家应该也都听说过，叫网景(Netscape)， 它觉得页面缺少交互太单调了。脑袋一拍，Mocha出来了--也就是后来的JavaScript, JavaScript 的交互能力为网页广告弹窗(~~真讨厌~~)提供了技术基础。
 
-![Javascript](../imgs/web-history/Javascript.png)
+![Javascript](https://www.jvxiao.cn/imgs/web-history/Javascript.png)
 
 页面是可以动了，但是样式还是单调了些，而且还完全取决于浏览器开发商。页面缺少布局和美化手段，太粗糙了点。在**1994年**的时候，一个叫Hkon Wiumlie的开发者提出了CSS (层叠样式表)的想法，通过编写样式实现对页面内容的布局和美化。因为后来各大浏览器厂商对CSS的支持与差异，直到两年后的1996 年，W3才推出CSS规范的第一版本。 虽然CSS因此遗留了很多历史的BUG, 但终究还是统一了战线，不读不说这是个奇迹。
 
-![CSS](../imgs/web-history/CSS.png)
+![CSS](https://www.jvxiao.cn/imgs/web-history/CSS.png)
 
 到了**1995年**，网页迎来了一个巨大的转折，因为一门编程界的老梗编程语言诞生了--PHP(~~PHP是世界上最好的语言，不介绍反驳~~，不，JavaScript才是)。
 
 PHP的出现，让页面可以访问数据内容了，不再是单一静态页面加简单的动态交互了。通过把数据从数据库中取出来，然后塞到页面里，然后再返回给浏览器，从而实现了内容上的更新。
 
-![PHP](../imgs/web-history/PHP.png)
+![PHP](https://www.jvxiao.cn/imgs/web-history/PHP.png)
 
 但是这种前后端耦合的方式也带来了一个问题，就是页面需要频繁的刷新。页面中很小的变动，都会导致页面刷新，速度慢和流量消耗是个大问题。
 
 三步之内，必有解药，不行就三年。到了**1998年**，Ajax（Asynchronous JavaScript and XML）技术概念被提出，它大喊一声，学着点。Ajax通过动态加载数据，然后通过DOM操作将数据更新到页面的方式，完美的解决了页面频繁刷新的问题。
 
-![Jquery](../imgs/web-history/Jquery.png)
+![Jquery](https://www.jvxiao.cn/imgs/web-history/Jquery.png)
 
 想必后面的事情，大家都知道了，或者多少都有耳闻。 **2006年**，JQuery1.0 发布了，然后就是在Web开发中10年漫长的统治期，根据估计，到2010年，全球约90%的网站使用了JQuery。直到诸如Angular，React以及Vue等前端框架的崛起，这个Web界的王，才依依不舍离开曾经的宝座。
 
@@ -51,16 +51,16 @@ PHP的出现，让页面可以访问数据内容了，不再是单一静态页�
 ## MVVM技术框架
 
 - 定义：
-  - Model: 数据层，与MVC的Model类似。
-  - View: 视图曾，负责数据展示。
-  - ViewModel: 将Model转化为View的友好格式，并处理用户交互。
+  - `Model: 数据层`，与MVC的Model类似。
+  - `View: 视图层`，负责数据展示。
+  - `ViewModel`: 将Model转化为View的友好格式，并处理用户交互。
 
 - 特点：
-  - 双向数据绑定：ViewModel和View之间通过数据绑定自动同步数据。
-  - 简化逻辑： ViewModel承担了部分Controller的职责，简化了View和Model的交换。
-  - 适用于声明编程：适合使用声明式语法（如HTML）构建视图。
+  - `双向数据绑定`：ViewModel和View之间通过数据绑定自动同步数据。
+  - `简化逻辑`： ViewModel承担了部分Controller的职责，简化了View和Model的交换。
+  - `适用于声明编程`：适合使用声明式语法（如HTML）构建视图。
 
-![MVVM](../imgs/web-history/mvvm.jpg)
+![MVVM](https://www.jvxiao.cn/imgs/web-history/mvvm.jpg)
 
 MVVM通过数据双向绑定，分离关注点，简化视图逻辑、提高可测试性、支持响应式涉及和组件化开发等优势，极大地提升了前端开发的效率和代码质量。它特别适合需要复杂交互和动态数据的应用场景，如单页面应用和富客户端应用。选择MVVM模式能够帮助开发者构建更高效、更易于维护的前端应用。
 
@@ -69,7 +69,7 @@ MVVM通过数据双向绑定，分离关注点，简化视图逻辑、提高可�
 
 讲了那么多，终于回到我们的主题Vue了。之所以啰嗦，是希望你能够明白，无论是多么新的技术，都是有其发展历程和背景的。同时呢，无论看着多牛的技术框架，也是会有这样那样的问题的--人在挑毛病这块是无题的，而这也是技术不断往前发展的原因之一。
 
-![Vue](../imgs/web-history/Vue.png)
+![Vue](https://www.jvxiao.cn/imgs/web-history/Vue.png)
 
 技术的更新发展，往往都是对前一项主流技术上进行突破或者颠覆。比如，Vue这样的JS框架，解决的不就是视图渲染问题嘛，不再需要用户去操作DOM, 用户可以更加关注数据流和用户交互。从JavaScript刚刚实现用户交互直接跨越到Vue框架，一般我们称之为神话或者穿越...
 
