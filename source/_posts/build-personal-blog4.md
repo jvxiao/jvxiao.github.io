@@ -160,7 +160,7 @@ jobs:
 
 编写完脚本之后，提交代码至 `master` 分支，在Github对应的仓库分支上可以看见已经有对应的workflow，如作者的脚本配置。
 
-![actions](../imgs/build-blog4/actions.png)
+![actions](https://www.jvxiao.cn/imgs/build-blog4/actions.png)
 
 如果左侧出现刚才脚本的名称 `automaticly update blogs`, 则说明已经配置成功了，可以通过提交内容到 master分支来检验脚本的执行情况。
 
