@@ -150,14 +150,14 @@ app.listen(port, '0.0.0.0', () => {
 
 通过浏览器访问地址 `http://localhost:5000`, 能够正确显示内容，说明守护进程启动成功了。
 
-![success](../imgs/daemon/success.png)
+![success](https://www.jvxiao.cn/imgs/daemon/success.png)
 
 另外查看一下日志文件 `daemon.log`，可以看到服务启动和请求的记录。
-![success](../imgs/daemon/logs.png)
+![success](https://www.jvxiao.cn/imgs/daemon/logs.png)
 
 
 在任务管理中，也能看到一个一直活跃的 node 进程。
-![success](../imgs/daemon/panel.png)
+![success](https://www.jvxiao.cn/imgs/daemon/panel.png)
 
 Bingo~~~, 一个简单的守护进程就这么实现了。
 
