@@ -16,19 +16,21 @@
 
 📚 你能在这里收获：
 
-【基础夯实】：HTML/CSS/JS 核心知识点拆解，告别 “似懂非懂”；
+**【基础夯实】**：HTML/CSS/JS 核心知识点拆解，告别 “似懂非懂”；
 
-【框架实战】：React/Vue/Angular 用法 + 避坑指南，从入门到项目落地；
+**【框架实战】**：React/Vue/Angular 用法 + 避坑指南，从入门到项目落地；
 
-【工程化进阶】：Webpack/Vite 优化、TypeScript 实战，提升开发效率；
+**【工程化进阶】**：Webpack/Vite 优化、TypeScript 实战，提升开发效率；
 
-【性能 & 面试】：加载提速技巧 + 高频面试题解析，搞定职场难题；
+**【性能 & 面试】**：加载提速技巧 + 高频面试题解析，搞定职场难题；
 
-【行业动态】：CSS 新特性、前端 AI 工具应用，紧跟技术潮流。
+**【行业动态】**：CSS 新特性、前端 AI 工具应用，紧跟技术潮流。
+
+<br/>
 
 **支持一下**： 搜索公众号 `我做开发那些年` 或者扫描下方二维码 进行关注.
 
-<img src="./source/imgs/logo.png" style="height: 160px"/>
+<img src="./source/imgs/logo3.png" style="height: 160px; marginTop: 10px;"/>
 
 <!-- ![logo](./source/imgs/logo.png) -->
 
