@@ -20,7 +20,7 @@ React采用了 `函数式组件 + JSX`的设计，强调 `组件化` 和 `单向
 
 它本身并不强制特定架构，所以使用 React 开发需要开发团队自行制定规范（如目录结构，状态管理方案），因此更适合有经验的团队灵活设计符合项目需求的架构。
 
-![vue sfc](../imgs/react-vs-vue/vue-sfc.png)
+![vue sfc](https://www.jvxiao.cn/imgs/react-vs-vue/vue-sfc.png)
 
 
 Vue 采用的是 `模板 + 脚本 + 样式`的单文件组件（SFC），说白了就是这么写我定好了，你们按照我这个格式来写就 OK 了。不要问为什么，问就是海龟的屁股-龟腚。
@@ -34,7 +34,7 @@ Vue3 的 Composition Api 解决了 Vue2 中 Options Api 在大型项目中逻辑
 
 React 本身不内置状态管理方案，依赖生态中的第三方库，复杂场景可选择 Redux，Zustand（轻量灵活）、Recoil（专注原子化状态）等。
 
-![vue state](../imgs/react-vs-vue/state.png)
+![vue state](https://www.jvxiao.cn/imgs/react-vs-vue/state.png)
 
 
 Vue 在这一块官方提供了完整的状态管理方案，Vue 2 中常用 Vuex，Vue 3 中已升级为 Pinia，集成和使用起来都很方便。
@@ -47,7 +47,7 @@ Vue 在这一块官方提供了完整的状态管理方案，Vue 2 中常用 Vue
 
 React 与 TypeScript 集成极为成熟，从框架到生态库（如 React Router、Redux）都有完善的类型定义。函数式组件和 Hooks 天然适合 TypeScript 的类型推断，复杂场景下的类型定义更直观。
 
-![react-typescript](../imgs/react-vs-vue/react-typescript.png)
+![react-typescript](https://www.jvxiao.cn/imgs/react-vs-vue/react-typescript.png)
 
 
 此外， React 的工程化工具链也很丰富。如 Create React App、Next.js 等，适合复杂项目的工程化需求。
@@ -62,7 +62,7 @@ Vue 的话 Vue3 版本是使用 Typescript重写的，在类型支持大幅提�
 
 就目前开发者对两者的评价来说，React 的学习曲线还是比较陡峭的，尤其是JSX 语法、函数式编程思想（纯函数、不可变数据）对新手有一定门槛，但掌握后灵活性极高。
 
-![learning-curves](../imgs/react-vs-vue/learning-curves.jpg)
+![learning-curves](https://www.jvxiao.cn/imgs/react-vs-vue/learning-curves.jpg)
 
 
 Vue 在学习曲线上对新手算是非常友好的，学习曲线平缓，模板语法接近 HTML。 其官方文档被称为 “前端最佳文档”，降低了团队培训成本，适合成员技术背景多样的大型团队。
