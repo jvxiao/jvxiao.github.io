@@ -6,6 +6,8 @@ tags:
    - 博客搭建
    - 个人IP
 keywords: [博客搭建, 免费博客平台, 托管博客, 模板建站]
+index_img: imgs/build-blog1/blog2.jpg
+banner_img: imgs/build-blog1/blog2.jpg
 ---
 
 在上文[什么每个人都该有个数字自留地](./build-personal-blog1.md)中讲解了为什么我们要写博客以及为什么要搭建自己的独立博客，今天我们将要撸起袖子，开始干活了。认真看完本文，按照文中的步骤去做，你将拥有一个属于你自己的博客站点。

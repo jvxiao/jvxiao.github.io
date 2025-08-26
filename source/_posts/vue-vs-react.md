@@ -4,6 +4,7 @@ date: 2025-08-08 08:05:44
 tags: [Vue, React]
 keywords: [Vue, React]
 banner_img: /imgs/react-vs-vue/react-vs-vue.png
+index_img: /imgs/react-vs-vue/react-vs-vue.png
 ---
 
 Vue 和 React 作为前端开发框架中的两个扛把子，在日常的开发工作中我们需要频繁的与它们打交道。Vue 和 React 都是成熟的前端框架，都能胜任大型项目开发，但它们的设计理念、生态特点和适用场景存在差异。

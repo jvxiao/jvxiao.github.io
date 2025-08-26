@@ -6,6 +6,8 @@ tags:
    - 博客搭建
    - 个人IP
 keywords: [博客搭建, 免费博客平台, 托管博客, 模板建站]
+index_img: imgs/build-blog3/hexo.png
+banner_img: imgs/build-blog3/hexo.png
 ---
 
 通过上一篇文章--[动手搭建自己的第一个博客站点](./build-personal-blog2.md)的介绍，相信你已经成功搭建起了自己的第一个博客网站。如果你的动手能力比较强的话，或许还给博客页面做了页面美工，添加了导航等功能。

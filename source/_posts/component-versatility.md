@@ -4,6 +4,8 @@ date: 2025-06-25 18:20:41
 tags: [Vue, 组件]
 keywords: [Vue, 组件]
 category: Web开发
+banner_img: /imgs/baners/team.jfif
+index_img: /imgs/baners/team.jfif
 ---
 
  > CV: Copy & Paste, 复制的意思

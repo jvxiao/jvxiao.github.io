@@ -4,6 +4,8 @@ date: 2025-07-01 21:51:10
 tags: [Vuex, Pinia, Vue]
 keywords: [Vuex, Pinia, Vue]
 category: Web开发
+banner_img: /imgs/baners/pinia.png
+index_img: /imgs/baners/pinia.png
 ---
 
 

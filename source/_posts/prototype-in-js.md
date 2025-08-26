@@ -2,6 +2,8 @@
 title: 深入理解 JavaScript 中的原型与原型链
 date: 2025-08-25 21:37:57
 tags: [JavaScript, 前端进阶]
+index_img: imgs/prototype/banner.png
+banner_img: imgs/prototype/banner.png
 ---
 
 

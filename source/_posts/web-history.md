@@ -4,6 +4,9 @@ date: 2025-07-10 12:51:16
 tags: [Web开发，JQuery, Vue, MVVM]
 keywords: [Web开发，JQuery, Vue, MVVM]
 category: Web开发
+banner_img: /imgs/web-history/first-web.jpg
+index_img: /imgs/web-history/first-web.jpg
+
 ---
 
 **1991年**，有个叫蒂姆・博纳斯・李的英国科学家，写了世界上第一个静态网页。这个牛人不仅创造了超文本标记语言（HTML），而且还开发出世界上第一个网页浏览器，同时也由此发明了万维网(World Wide Web), 因此他也被称为万维网之父。

@@ -6,6 +6,8 @@ tags:
    - 博客搭建
    - 个人IP
 keywords: [Github Actions, 博客搭建, 免费博客平台, 托管博客, 模板建站]
+index_img: imgs/build-blog1/blog4.jpg
+banner_img: imgs/build-blog1/blog4.jpg
 ---
 
 经过前面的系列文章的学习和实践，相信你已经成功的利用Hexo构建自己的博客并且部署到了Github上。

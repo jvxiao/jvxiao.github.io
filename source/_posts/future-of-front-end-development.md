@@ -4,6 +4,8 @@ date: 2025-07-28 18:25:42
 tags: 前端开发
 keywords: [前端开发，职业规划]
 category: Web开发
+banner_img: /imgs/feature-of-fe/design.jpg
+index_img: /imgs/feature-of-fe/design.jpg
 ---
 
 写代码对我来说是一件很开心的事，通过写代码来糊口，也算得上是一件很幸运的事了。但工作的时间久了，一些危机感和职业的通病，多多少少也会暴露出来。

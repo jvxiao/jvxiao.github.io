@@ -3,6 +3,8 @@ title: 从崩溃到稳定：前端开发者必学的 Node.js 守护进程实战�
 date: 2025-07-15 21:37:08
 tags: [守护进程, Node]
 category: Web开发
+index_img: imgs/daemon/640.jfif
+banner_img: imgs/daemon/640.jfif
 ---
 
 说到守护进程，绝大多数开发者其实都不陌生，甚至有些记性比较好的同学还能大段背诵关于进程的面试八股文呢。虽然在日常的Web开发工作中很少使用到它，而且可能从写Web第一天到离职都没有真正写过一个守护进程，即使有或许还是学校里教学用的--使用C语言实现的Demo。

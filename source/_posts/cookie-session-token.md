@@ -4,6 +4,8 @@ date: 2025-07-01 21:15:32
 tags: [Cookie, Session, Token]
 keywords: [Cookie, Session, Token]
 category: [Web开发, 网络安全]
+banner_img: /imgs/baners/security.jfif
+index_img: /imgs/baners/security.jfif
 ---
 
 # 一文读懂Cookie、Session和Token：原理、区别与应用场景

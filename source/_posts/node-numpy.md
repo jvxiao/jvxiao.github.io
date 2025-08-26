@@ -3,6 +3,8 @@ title: JavaScript的"数值计算困局"：生态缺位下的破局之路
 date: 2025-06-27 22:36:13
 tags: [Web开发, Node, packages]
 keywords: [Web开发, Node]
+banner_img: /imgs/baners/numpy-in-node.jfif
+index_img: /imgs/baners/numpy-in-node.jfif
 ---
 
 

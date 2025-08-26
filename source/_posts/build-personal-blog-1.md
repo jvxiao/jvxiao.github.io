@@ -1,15 +1,14 @@
 ---
 title: 搭建个人博客系列--(1) 为什么每个人都该有个数字自留地
-
 date: 2025-05-25 13:40:00
 category: 搭建博客
 tags: 
    - 博客搭建
    - 个人IP
 keywords: [博客搭建, 免费博客平台, 托管博客, 模板建站]
+index_img: imgs/build-blog1/blog1.jpg
+banner_img: imgs/build-blog1/blog1.jpg
 ---
-
-![](../imgs/build-blog1/blog1.jpg)
 
 从2017年写第一篇博客，到现在已经过去8个年头了。
 
