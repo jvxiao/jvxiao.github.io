@@ -2,6 +2,8 @@
 title: Web开发这些年：从“小油条”到“老油条”的成长之路。
 date: 2025-10-15 18:14:30
 tags: 程序人生
+banner_img: /imgs/baners/coding.jfif
+index_img: /imgs/baners/coding.jfif
 ---
 做 Web 开发有些年头了，目前头发还算茂密，只是人已不再少年。​
 

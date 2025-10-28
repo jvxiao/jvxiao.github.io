@@ -3,6 +3,8 @@ title: 程序员如何打破职业瓶颈？先搬开这3块绊脚石。
 date: 2025-10-19 21:46:02
 tags: 程序人生
 keywords: 程序人生
+banner_img: /imgs/baners/break.jfif
+index_img: /imgs/baners/break.jfif
 ---
 
 程序员的职业路不算长，可不少人早早就遇到了 “天花板”：想提升没方向，想突破没抓手，这就是让人头疼的 “瓶颈期”。是什么让我们陷入这种困境？又该怎么走出来？咱们一点点说清楚。
