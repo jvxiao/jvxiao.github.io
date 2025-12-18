@@ -21,7 +21,8 @@ var ogConfig = Object.assign({ image: ogImage && url_for(ogImage) }, theme.open_
   <% if (theme.canonical.enable) { %>
     <link rel="canonical" href="<%= url_join(config.url, page.canonical_path.replace('index.html', '')) %>"/>
   <% } %>
-
+  <link rel="preconnect" href="https://lib.baomitu.com" crossorigin>
+  <link rel="dns-prefetch" href="https://lib.baomitu.com">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, shrink-to-fit=no">
   <meta http-equiv="x-ua-compatible" content="ie=edge">
   <% if (theme.force_https) { %>
