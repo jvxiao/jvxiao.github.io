@@ -1,5 +1,5 @@
 ---
-title: 一文说透ES6 Proxy: 从本质到应用场景
+title: 一文说透ES6 Proxy--从本质到应用场景
 date: 2025-12-06 12:34:40
 tags: JavaScript进阶, ES6进阶
 category: ES6进阶

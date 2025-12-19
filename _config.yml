@@ -3,7 +3,7 @@
 ## Source: https://github.com/hexojs/hexo/
 
 # Site
-title: 乔文小屋
+title: 我做开发那些年
 subtitle: '从初级到资深：大前端开发者的进阶笔记本'
 description: '大前端全栈开发博客，聚焦 Vue3+Node.js 全栈实践、Electron 桌面应用开发、Web性能优化及 Serverless 架构探索。'
 keywords: [前端技术博客, 大前端框架, 跨端开发, Web性能优化, jvxiao]
