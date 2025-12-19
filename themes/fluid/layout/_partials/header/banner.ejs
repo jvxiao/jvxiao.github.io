@@ -5,7 +5,7 @@ var banner_mask_alpha = parseFloat(page.banner_mask_alpha || theme.index.banner_
 var subtitle = page.subtitle || page.title
 %>
 
-<div id="banner" class="banner" <%- theme.banner && theme.banner.parallax && 'parallax=true' %>
+<div class="banner" <%- theme.banner && theme.banner.parallax && 'parallax=true' %>
   style="background: linear-gradient(-45deg, #f5f7fa, #c3cfe2, #e0f2f1, #ffffff)">
   <div class="full-bg-img">
     <div class="mask flex-center" style="background-color: rgba(0, 0, 0, <%= parseFloat(banner_mask_alpha) %>)">

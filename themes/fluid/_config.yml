@@ -167,7 +167,7 @@ color:
 
   # 全局次级字体色（摘要、简介等位置）
   # Color of global secondary text (excerpt, introduction, etc.)
-  sec_text_color: "#718096"
+  sec_text_color: "#4A5568"
   sec_text_color_dark: "#a7a9ad"
 
   # 主面板背景色
@@ -253,7 +253,7 @@ web_analytics:
   # Baidu analytics, get the string behind `hm.js?`
   # See: https://tongji.baidu.com/sc-web/10000033910/home/site/getjs?siteId=13751376
   # baidu: 31676a29d4f2ed01ba5875857919a754  jvxiao.github.io
-  baidu: dc09afa0e535b171bffc54b67c6ca65d
+  # baidu: dc09afa0e535b171bffc54b67c6ca65d
 
   # Google Analytics 4 的媒体资源 ID
   # Google Analytics 4 MEASUREMENT_ID
@@ -337,7 +337,7 @@ lazyload:
 
 # 图标库，包含了大量社交类图标，主题依赖的不包含在内，因此可自行修改，详见 https://hexo.fluid-dev.com/docs/icon/
 # Icon library, which includes many social icons, does not include those theme dependent, so your can modify link by yourself. See: https://hexo.fluid-dev.com/docs/en/icon/
-iconfont: //at.alicdn.com/t/c/font_1736178_k526ubmyhba.css
+iconfont: https://at.alicdn.com/t/c/font_1736178_k526ubmyhba.css
 
 
 #---------------------------
@@ -456,7 +456,7 @@ footer:
   # 展示网站的 PV、UV 统计数
   # Display website PV and UV statistics
   statistics:
-    enable: true
+    enable: false
 
     # 统计数据来源，使用 leancloud, umami 需要设置 `web_analytics` 中对应的参数；使用 busuanzi 不需要额外设置，但是有时不稳定，另外本地运行时 busuanzi 显示统计数据很大属于正常现象，部署后会正常
     # Data source. If use leancloud, umami, you need to set the parameter in `web_analytics`
