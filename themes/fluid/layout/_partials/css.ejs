@@ -15,9 +15,9 @@
 <%- css_ex(theme.static_prefix.internal_css, 'main.css') %>
 
 <% if (theme.code.highlight.enable) { %>
-  <%- css_ex(theme.static_prefix.internal_css, 'highlight.css', 'id="highlight-css"') %>
+  <%- css_ex(theme.static_prefix.internal_css, 'highlight.css', `id="highlight-css" media="print onload="this.media="all"`) %>
   <% if (theme.dark_mode.enable) { %>
-    <%- css_ex(theme.static_prefix.internal_css, 'highlight-dark.css', 'id="highlight-css-dark"') %>
+    <%- css_ex(theme.static_prefix.internal_css, 'highlight-dark.css', `id="highlight-css-dark" media="print onload="this.media="all"`) %>
   <% } %>
 <% } %>
 
