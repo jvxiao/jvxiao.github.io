@@ -3,6 +3,8 @@ title: Vue进阶系列第5篇--Vue实例挂载的过程中发生了什么?
 date: 2025-12-17
 tags: Vue, JavaScript进阶
 category: Vue
+banner_img: /imgs/baners/vue.jfif
+index_img: /imgs/baners/vue.jfif
 ---
 大家好，我是jvxiao。
 

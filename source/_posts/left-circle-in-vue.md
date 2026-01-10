@@ -3,6 +3,8 @@ title: Vue进阶系列第6篇:Vue实例生命周期详解--组件从创建到销
 date: 2025-12-20
 tags: Vue, JavaScript进阶
 category: Vue
+banner_img: /imgs/baners/vue.jfif
+index_img: /imgs/baners/vue.jfif
 ---
 <!--  # Vue2生命周期详解：组件从创建到销毁的全过程 -->
 

@@ -3,6 +3,8 @@ title: Vue进阶系列第9篇--你真的懂nextTick吗？我表示很怀疑
 date: 2025-12-28 20:58:02
 tags: Vue, JavaScript进阶
 category: Vue
+banner_img: /imgs/baners/vue.jfif
+index_img: /imgs/baners/vue.jfif
 ---
 
 这是[Vue从入门到精通](https://mp.weixin.qq.com/mp/appmsgalbum?__biz=MzU2MjU3MzI0MA==&action=getalbum&album_id=4276738695946223617#wechat_redirect)系列文章的第9篇，今天我们来讲讲Vue中的`nextTick`的定义和几种使用场景，下一篇单独开一篇讲解它的实现原理。

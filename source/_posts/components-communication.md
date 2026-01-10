@@ -3,6 +3,8 @@ title: Vue进阶系列第8篇--Vue组件间通信方式都有哪些？
 date: 2025-12-26 20:58:02
 tags: Vue, JavaScript进阶
 category: Vue
+banner_img: /imgs/baners/vue.jfif
+index_img: /imgs/baners/vue.jfif
 ---
 > 今天内容略粗糙（码字有点累），而且知识点有点多，不想看全文的可以直接看总结，浓缩的就是精华。
 
