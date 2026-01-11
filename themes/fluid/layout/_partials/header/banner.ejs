@@ -8,9 +8,9 @@ var subtitle = page.subtitle || page.title
 <div class="banner" <%- theme.banner && theme.banner.parallax && 'parallax=true' %>
   style="background: linear-gradient(-45deg, #f5f7fa, #c3cfe2, #e0f2f1, #ffffff)">
   <div class="full-bg-img">
-    <div class="mask flex-center" style="background-color: rgba(0, 0, 0, <%= parseFloat(banner_mask_alpha) %>)">
+    <div class="mask flex-center" style="background-color: rgba(10, 10, 10)">
       <div class="banner-text text-center fade-in-up">
-        <div class="h2">
+        <div class="h4">
           <% if(theme.fun_features.typing.enable && in_scope(theme.fun_features.typing.scope)) { %>
             <span id="subtitle" data-typed-text="<%= subtitle %>"></span>
           <% } else { %>
