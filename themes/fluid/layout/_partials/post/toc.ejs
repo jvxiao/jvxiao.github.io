@@ -4,6 +4,12 @@
     <span><%- __('post.toc') %></span>
   </p>
   <div class="toc-body" id="toc-body"></div>
+  <div class="logo">
+    <% if (theme.toc_logo_url) { %>
+      <img src="<%- theme.toc_logo_url %>" alt="logo" />
+    <% } %>
+    <span><%- theme.toc_logo_text || '' %></span>
+  </div>
 </div>
 
 <%
