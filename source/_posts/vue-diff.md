@@ -2,7 +2,8 @@
 title: 图解 Vue2 diff 算法：首尾四向对比核心逻辑全拆解, 告别死记硬背八股文
 date: 2026-01-07
 tags: Vue, JavaScript进阶
-category: Vue
+banner_img: /imgs/baners/diff.png
+index_img: /imgs/baners/diff.png
 ---
 
 <!-- # 图解 Vue2 diff 算法：首尾四向对比核心逻辑全拆解 -->

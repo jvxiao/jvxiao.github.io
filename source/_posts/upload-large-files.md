@@ -1,7 +1,8 @@
 ---
 title: 把大象装进冰箱分几步？Node.js 大文件“切片上传”深度解析
 date: 2026-01-13 
-tags:
+banner_img: /imgs/baners/big-file.jfif
+index_img: /imgs/baners/big-file.jfif
 ---
 在用 Node.js 和 JavaScript 开发文件上传功能时，如果文件特别大（比如好几个 GB 的高清视频或者压缩包），一次性上传不仅慢，而且万一中途网络断了，就得从头再来，非常让人崩溃。
 

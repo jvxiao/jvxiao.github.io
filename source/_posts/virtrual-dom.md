@@ -3,6 +3,8 @@ title: 原生 DOM 真的慢吗？为什么现代框架都迷恋虚拟 DOM？
 date: 2026-01-05
 tags: Vue, JavaScript进阶
 category: Vue
+banner_img: /imgs/baners/virtrual-dom.jfif
+index_img: /imgs/baners/virtrual-dom.jfif
 ---
 
 
