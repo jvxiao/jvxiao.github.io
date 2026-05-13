@@ -1,0 +1,30 @@
+/* 文章卡片悬浮时标题变红 */
+.recent-post-item:hover .article-title,
+.recent-post-item:hover .recent-post-info a {
+  color: #c72f1c !important;
+  transition: color 0.2s;
+}
+
+/* 侧边栏文章悬浮标题 */
+.card-recent-post .aside-list-item:hover .aside-list-title {
+  color: #c72f1c !important;
+}
+
+/* 站点名点缀 */
+.site-name,
+#site-name,
+.nav #site-name,
+.blog_title {
+  color: #c72f1c !important;
+}
+
+/* 导航栏当前/悬浮项 */
+#nav .menus_item a:hover,
+#nav .menus_item .site-page:hover {
+  color: #c72f1c !important;
+}
+
+/* 链接通用悬浮 */
+a:hover {
+  color: #c72f1c;
+}
