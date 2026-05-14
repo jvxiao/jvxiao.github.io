@@ -18,10 +18,16 @@
   color: #c72f1c !important;
 }
 
-/* 导航栏当前/悬浮项 */
+/* 导航栏悬浮项 */
 #nav .menus_item a:hover,
 #nav .menus_item .site-page:hover {
   color: #c72f1c !important;
+}
+
+/* 当前导航项高亮 */
+.menus_item.nav-active .site-page {
+  color: #c72f1c !important;
+  font-weight: 600;
 }
 
 /* 链接通用悬浮 */

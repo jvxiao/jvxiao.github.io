@@ -531,6 +531,7 @@ inject:
   head:
     - <link rel="stylesheet" href="/css/custom.css">
   bottom:
+    - <script>document.addEventListener('DOMContentLoaded',()=>{const p=location.pathname;document.querySelectorAll('.menus_item a.site-page').forEach(a=>{const h=a.getAttribute('href');if(h&&h!=='/'&&p.startsWith(h))a.closest('.menus_item').classList.add('nav-active');if(h==='/'&&p==='/')a.closest('.menus_item').classList.add('nav-active')})});</script>
 
 CDN:
   internal_provider: local
