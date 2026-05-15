@@ -7,7 +7,7 @@
     "clean": "hexo clean",
     "deploy": "hexo deploy",
     "server": "hexo server",
-    "restart": "npm hexo clean && npm hexo server"
+    "restart": "npx hexo clean && npx hexo server"
   },
   "hexo": {
     "version": "7.3.0"

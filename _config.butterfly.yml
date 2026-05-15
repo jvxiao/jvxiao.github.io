@@ -14,7 +14,7 @@ nav:
 
 menu:
   首页: / || fas fa-home
-  文章: /posts/ || fas fa-book
+  文章: /archives/ || fas fa-book
   生活: /categories/life/ || fas fa-coffee
   项目: /projects/ || fas fa-rocket
   关于: /about/ || fas fa-user
