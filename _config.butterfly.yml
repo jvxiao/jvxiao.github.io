@@ -42,11 +42,11 @@ code_blocks:
 # Image Settings
 # --------------------------------------
 
-favicon: /img/favicon.png
+favicon: /img/favicon.jpg
 
 avatar:
-  img: /img/avatar.png
-  effect: true
+  img: /imgs/avatar.jpg
+  effect: false
 
 disable_top_img: true
 
